@@ -3,7 +3,7 @@
 #google_analytics: UA-NNNNNNNN-N
 title: 'briSee'
 description: "cybersecurity blog about penetration testing, red teaming, blue teaming, and things."
-url: "brisee.github.io"
+url: "https://brisee.github.io"
 
 header_pages:
 - index.md
