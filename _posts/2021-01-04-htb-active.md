@@ -6,7 +6,16 @@ tags: [LDAP, TGT, TGS]
 categories: [HTB]
 ---
 
-[ ![]({{ site.url }}/images/htb/active/feature.jpg) ]({{ site.url }}/images/htb/active/feature.jpg)
+<style>
+img {
+  width: 80%;
+  height: 80%;
+}
+</style>
+
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/feature.jpg" />
+</p>
 
 nmap scan:
 
@@ -16,7 +25,9 @@ nmap scan:
 smbmap -H 10.10.10.100
 ```
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 1.png) ]({{ site.url }}/images/htb/active/Untitled 1.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 1.png" />
+</p>
 
 Using a null session, able to read the Replication share
 
@@ -28,7 +39,9 @@ smbclient //10.10.10.100/Replication -c 'recurse;ls'
 
 Recursively looking through Replication, a Groups.xml file is found under this path:
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 2.png) ]({{ site.url }}/images/htb/active/Untitled 2.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 2.png" />
+</p>
 
 `Groups.xml` has to relate with Group Policy Preferences ("GPP"). GPP allowed admins to create domain policies with embedded credentials. GPP on paper is very useful for admins to embed credentials to do tasks such as mapping drives, creating local users, scheduling tasks, etc. But the question that comes into mind is: how are these embedded credentials protected? When a GPP is created, there is a correlating xml file that contains the configuration data as well as a password if it is provided. If there was a password provided, it would be encrypted using an Advanced Encryption Standard key ("AES")-256 bit. This encryption should be enough security, except that Microsoft published the AES private key on MSDN which would allow one to decrypt the password.
 
@@ -46,34 +59,48 @@ cd \active.htb\Policies\{3.....}\MACHINE\Preferences\Groups
 get Groups.xml
 ```
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 3.png) ]({{ site.url }}/images/htb/active/Untitled 3.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 3.png" />
+</p>
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 4.png) ]({{ site.url }}/images/htb/active/Untitled 4.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 4.png" />
+</p>
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 5.png) ]({{ site.url }}/images/htb/active/Untitled 5.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 5.png" />
+</p>
 
 Using `gpp-decrypt` the "cpassword" can be decrypted:
 
 ```bash
 gpp-decrypt <password>
 ```
-[ ![]({{ site.url }}/images/htb/active/Untitled 6.png) ]({{ site.url }}/images/htb/active/Untitled 6.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 6.png" />
+</p>
 
 So the password is: GPPstillStandingStrong2k18
 
 Using `crackmapexec` since we have valid credentials, lets see what this account has access to in terms of SMB shares:
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 7.png) ]({{ site.url }}/images/htb/active/Untitled 7.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 7.png" />
+</p>
 
 By default, `NETLOGON` and `SYSVOL` are pretty typical in a Domain Controller, so investigating the Users share seems more urgent than the rest.
 
 Going into the Users share, the share that is here is essentially just the users share within the Domain Controller. 
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 8.png) ]({{ site.url }}/images/htb/active/Untitled 8.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 8.png" />
+</p>
 
 Trying to look into the Administrator directory we get an access denied. So going into SVC_TGS was my next option. There was not much here besides the user.txt file.
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 9.png) ]({{ site.url }}/images/htb/active/Untitled 9.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 9.png" />
+</p>
 
 I decided that looking for an approach to escalate my privileges now to get system level privileges would probably be the next best choice. Interestingly enough, the username SVC_TGS seemed a bit interesting. When on a Window box and seeing TGT or TGS, Kerberoasting always comes into mind.
 
@@ -86,14 +113,18 @@ But once we use the -request option with [getuserspns.py](http://getuserspns.py)
 ```python
 python3 GetUserSPNs.py -dc-ip 10.10.10.100 active.htb/SVC_TGS:GPPstillStandingStrong2k18
 ```
-[ ![]({{ site.url }}/images/htb/active/Untitled 10.png) ]({{ site.url }}/images/htb/active/Untitled 10.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 10.png" />
+</p>
 
 We can see above the SPN is an Administrator, so we can grab the Administrator encrypted password.
 
 ```python
 python3 GetUserSPNs.py -request -dc-ip 10.10.10.100 active.htb/SVC_TGS:GPPstillStandingStrong2k18
 ```
-[ ![]({{ site.url }}/images/htb/active/Untitled 11.png) ]({{ site.url }}/images/htb/active/Untitled 11.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 11.png" />
+</p>
 
 Now that we have the encrypted password all we have to do is paste that file into a text file which I named hash.txt and run hashcat against it. Hashcat requires a "hash mode" which correlates to a particular hash. We are working with Kerberos 5 TGS-REP etype 23 so searching for it on [https://hashcat.net/wiki/doku.php?id=example_hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) shows that the hash mode is 13100. The hash modes are also available if you use the —help argument with hashcat
 
@@ -104,9 +135,13 @@ hashcat --help
 ```python
 hashcat -m 13100 hash.txt -a 0 /usr/share/wordlists/rockyou.txt --force
 ```
-[ ![]({{ site.url }}/images/htb/active/Untitled 12.png) ]({{ site.url }}/images/htb/active/Untitled 12.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 12.png" />
+</p>
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 13.png) ]({{ site.url }}/images/htb/active/Untitled 13.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 13.png" />
+</p>
 
 Looking at the very end of the encrypted password shows the cracked password being "Ticketmaster1968". This is the cracked password for the Administrator account.
 
@@ -116,4 +151,6 @@ Since we now have Administrator credentials, throwing these into `psexec.py` wil
 python3 psexec.py active.htb/Administrator@10.10.10.100
 ```
 
-[ ![]({{ site.url }}/images/htb/active/Untitled 14.png) ]({{ site.url }}/images/htb/active/Untitled 14.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/active/Untitled 14.png" />
+</p>
