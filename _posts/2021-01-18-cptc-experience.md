@@ -72,7 +72,10 @@ Open Source Intelligence, also known as OSINT, is defined as is the practice of 
 
 This year's fictitious company was called Next Generation Power and Water, NGPEW, which was a regional power and water utility company servicing  the city of Smallville. Almost every year, there is some sort of interesting information about the company that is found on various social media platforms, GitHub, and various other sites.  NGPEW also had its own website that had a section boasting its strong password policy, even including examples of strong passwords such as: `StrongPassword1, WestThompsonDam, etc.`Funny enough, we were able to use these credentials to brute force into a  Domain  Administrator account. On NGPEW's GitHub, we discovered that there were commits on the repository that an NGPEW employee accidentally pushed that contained internal information about the [PowerBus diagram](https://github.com/Next-Generation-Power-and-Water/docs/blob/6cb3049ecc95c8ed55aa9b1c1d362e975b7d59f4/PowerBus-Overview.png) and the company [organization structure](https://github.com/Next-Generation-Power-and-Water/docs/blob/6cb3049ecc95c8ed55aa9b1c1d362e975b7d59f4/Demo_Organization_Import_09_03_2020.pdf). With an entire list of the company's employee names and roles, we were able to further investigate and find Twitter and LinkedIn profiles associated with the company.   Furthermore, the discovered employee names could be used to generate a list of usernames that the company utilizes given different possible naming conventions. The roles are equally as important as it gives teams an insight into which employees are considered high priority targets during the engagement. 
 
-[ ![]({{ site.github.url }}/images/cptc/fakenews.png) ]({{ site.url }}/images/cptc/fakenews.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/cptc/fakenews.png" />
+</p>
+
 
 OSINT is definitely a fun part of the competition and should not be underestimated as it will give you points! Dan Borges has been the lead on creating OSINT for CPTC and his [blog ](http://lockboxx.blogspot.com/search?q=osint)has lots of good information about past OSINT created!
 
