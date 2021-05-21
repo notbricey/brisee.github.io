@@ -4,6 +4,6 @@ layout: home
 permalink: /
 ---
 
-# A grimoire for a modern age
+# briSee
 
-COMING SOON
+cybersecurity blog about penetration testing, red teaming, blue teaming, and things.
