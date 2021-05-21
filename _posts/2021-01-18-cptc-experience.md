@@ -12,7 +12,7 @@ by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https:/
 This blog post's objective is to be used as a way to educate cybersecurity students that are interested in competing in the Collegiate Penetration Testing Competition about how we prepared as a team and what to expect from these competitions. This post can also be used as a starting guide for teams looking to become more competitive in their region. 
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/global.png" />
+  <img src="{{ site.github.url }}/images/cptc/global.png" />
 </p>
 
 # Overview:
