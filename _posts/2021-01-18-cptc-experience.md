@@ -44,19 +44,19 @@ With a good understanding of penetration testing methodologies and frameworks, p
 VulnHub, HackTheBox, and TryHackMe all contain material that allows penetration testers to gain hands-on experience by being able to test their skills, as well as being exposed to the feeling of having to research and learn a new topic on the spot in order to complete the CTF. All three of these resources have a wide range of difficulties which can go from easy to extremely difficult which can allow students from all different skill levels to be able to continue to learn and grow. A general tip our team would suggest is ensuring there is a methodical approach in mind when using these resources. For example, when teams are going through these vulnerable boxes there should be a fair amount of understanding on what the vulnerability is, why is it vulnerable, how an exploit is taking advantage of the vulnerability, and lastly how someone could fix the vulnerability to ensure their system is more secure. Going through this process, teams will begin to gain a better understanding of why vulnerabilities and exploits may exist and begin to develop a sense of pattern recognition that can lead teams to discover vulnerabilities quicker and have an understanding of how they may be exploited.
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/htb.png" />
+  <img src="{{ site.github.url }}/images/cptc/htb.png" />
 </p>
 
 The Cal Poly Pomona CPTC team also trained on material specifically applying to web application security. For this, the CPTC team utilized [PortSwigger's Web Security Academy](https://portswigger.net/web-security), which provides free online training on web application security with documentation and hands-on labs which contain topics such as SQL injection, Cross-site scripting (XSS), OAuth authentication, and much more. As CPTC attempts to replicate industry-like environments, having a good understanding of web application security is essential as there is a high likelihood of web applications being present in the CPTC environment as well as in the industry.
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/academy.png" />
+  <img src="{{ site.github.url }}/images/cptc/academy.png" />
 </p>
 
 Lastly, the Cal Poly Pomona CPTC team utilized [Snap Labs](https://www.snaplabs.io/) which would aid us in pentesting an environment similar to CPTC's. Snap Labs provides advanced simulated networks which contain simulated users, network sizes, vulnerabilities and escalation paths, industry theming, Windows Active Directory, and more. With Snap Labs replicating industry-like environments, it allowed the Cal Poly Pomona CPTC team to better understand the methodology that goes into attacking an industry-like environment which differs greatly from pentesting individual systems. Snap Labs allows for escalation paths to observe findings that would be in an industry-like environment, such as information disclosure of employees or possible clients. Furthermore, the methodology of pivoting, which is used when a compromised system is used to attack other systems on the same network due to firewalls configurations can be practiced as Snap Lab environments have at least 25 systems within their network being ran and can be used to pivot from one system to another.
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/snaplabs.png" />
+  <img src="{{ site.github.url }}/images/cptc/snaplabs.png" />
 </p>
 
 # OSINT
@@ -65,12 +65,12 @@ Open Source Intelligence, also known as OSINT, is defined as is the practice of 
 
 This year's fictitious company was called Next Generation Power and Water, NGPEW, which was a regional power and water utility company servicing  the city of Smallville. Almost every year, there is some sort of interesting information about the company that is found on various social media platforms, GitHub, and various other sites.  NGPEW also had its own website that had a section boasting its strong password policy, even including examples of strong passwords such as: `StrongPassword1, WestThompsonDam, etc.`Funny enough, we were able to use these credentials to brute force into a  Domain  Administrator account. On NGPEW's GitHub, we discovered that there were commits on the repository that an NGPEW employee accidentally pushed that contained internal information about the [PowerBus diagram](https://github.com/Next-Generation-Power-and-Water/docs/blob/6cb3049ecc95c8ed55aa9b1c1d362e975b7d59f4/PowerBus-Overview.png) and the company [organization structure](https://github.com/Next-Generation-Power-and-Water/docs/blob/6cb3049ecc95c8ed55aa9b1c1d362e975b7d59f4/Demo_Organization_Import_09_03_2020.pdf). With an entire list of the company's employee names and roles, we were able to further investigate and find Twitter and LinkedIn profiles associated with the company.   Furthermore, the discovered employee names could be used to generate a list of usernames that the company utilizes given different possible naming conventions. The roles are equally as important as it gives teams an insight into which employees are considered high priority targets during the engagement. 
 
-[ ![]({{ site.url }}/images/cptc/fakenews.png) ]({{ site.url }}/images/cptc/fakenews.png)
+[ ![]({{ site.github.url }}/images/cptc/fakenews.png) ]({{ site.url }}/images/cptc/fakenews.png)
 
 OSINT is definitely a fun part of the competition and should not be underestimated as it will give you points! Dan Borges has been the lead on creating OSINT for CPTC and his [blog ](http://lockboxx.blogspot.com/search?q=osint)has lots of good information about past OSINT created!
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/dox.png" />
+  <img src="{{ site.github.url }}/images/cptc/dox.png" />
 </p>
 
 # Regionals Experience
@@ -79,7 +79,7 @@ Western Regionals CPTC hosted by Stanford had us RDP into Windows jumpboxes and 
 
 When you have over 20 active systems to pentest in under a day, keeping track of each system's completion is crucial. Our red-teaming platform nVis let us mark boxes as complete, in progress, or needing a second look.
 
-[ ![]({{ site.url }}/images/cptc/nVis Screenshot.png) ]({{ site.url }}/images/cptc/nVis Screenshot.png)
+[ ![]({{ site.github.url }}/images/cptc/nVis Screenshot.png) ]({{ site.url }}/images/cptc/nVis Screenshot.png)
 
 We split our efforts and everyone focused on technologies they had the strongest background in - we got initial access in multiple places pretty quick. First, our password spray against the Windows boxes hit a jackpot - Domain Admin credentials. Second, we found an exploit for and got remote code execution on the company help desk web application. And finally, we got a web shell on the main web server using the allowed PUT method.
 
@@ -99,7 +99,7 @@ It is highly encouraged that teams go into these competitions with a rough idea 
 
 The CPTC finals were a technological feat made possible thanks to the Rochester Institute of Technology, who hosted it from their new [Cyber Range](https://www.rit.edu/cybersecurity/cyber-range), which is their brand new cybersecurity training and competition center. If not for COVID-19, we would have been there in-person for the global round of CPTC.
 
-[ ![]({{ site.url }}/images/cptc/GCIoutside.jpg) ]({{ site.url }}/images/cptc/GCIoutside.jpg)
+[ ![]({{ site.github.url }}/images/cptc/GCIoutside.jpg) ]({{ site.github.url }}/images/cptc/GCIoutside.jpg)
 
 Once we were connected to the competition VDI and all of our scripts and infrastructure was deployed, we hit a roadblock the competition organizers wanted us to face - network segmentation. Next Generation Power and Water actually took our advice from the initial engagement and implemented strict access control lists, effectively barring us from communicating with 2 of the 3 subnets in scope. To add to the difficulty of the engagement, competition organizers patched off and secured nearly every vulnerability in the 1 subnet we had access to. NGPEW sprinkled in some rabbit holes for us to go down and in the absence of any other vectors, we followed some of them. Let's just say our team can now recite the entire Rocket.Chat API documentation.
 
@@ -112,7 +112,7 @@ The first thing we did once Day 2 testing began was running  nmap scans from the
 The international round of CPTC ended with us giving a presentation on our findings and when it was all wrapped up, we were the 3rd best team in all of the United States as well as parts of Canada, Europe and the Middle East. When we had a 1-on-1 debrief with the competition organizers, we were told that we actually got 1st place in technical findings and did consistently well overall. RIT and Stanford surely need to watch out, because Cal Poly Pomona has been steadily improving with every CPTC we've had.
 
 <p align="center">
-  <img src="{{ site.url }}/images/cptc/comingforyou.png" />
+  <img src="{{ site.github.url }}/images/cptc/comingforyou.png" />
 </p>
 
 # Benefits
@@ -131,6 +131,6 @@ Overall, the benefits the students can get by practicing and being a part of CPT
 
 Next CPTC season is promising to be just as exciting - the target has been announced to be a French bakery with both storefront applications and backend production industrial control systems that we will get to hack. This year was the first CPTC season for half of our team, yet it didn't deter us from placing third internationally, because of the knowledge that's transferred from one generation to the other. 
 
-[ ![]({{ site.url }}/images/cptc/ErZn5GwXEAAONVb.jpg) ]({{ site.url }}/images/cptc/ErZn5GwXEAAONVb.jpg)
+[ ![]({{ site.github.url }}/images/cptc/ErZn5GwXEAAONVb.jpg) ]({{ site.github.url }}/images/cptc/ErZn5GwXEAAONVb.jpg)
 
 Consistent excellency isn't created overnight - it has to be nurtured and eventually passed on entirely to the next roster. All but one team member will graduate by the time CPTC 2021 comes, but the new roster won't have to start from scratch - they will be building upon the knowledge accumulated by every team before them, including ours. 
