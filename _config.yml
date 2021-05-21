@@ -6,7 +6,7 @@ description: "cybersecurity blog about penetration testing, red teaming, blue te
 
 header_pages:
 - index.md
-- categories.html
+- categories.md
 - about.md
 
 #footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
