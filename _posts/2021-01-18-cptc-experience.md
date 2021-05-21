@@ -131,6 +131,8 @@ Overall, the benefits the students can get by practicing and being a part of CPT
 
 Next CPTC season is promising to be just as exciting - the target has been announced to be a French bakery with both storefront applications and backend production industrial control systems that we will get to hack. This year was the first CPTC season for half of our team, yet it didn't deter us from placing third internationally, because of the knowledge that's transferred from one generation to the other. 
 
-[ ![]({{ site.github.url }}/images/cptc/ErZn5GwXEAAONVb.jpg) ]({{ site.github.url }}/images/cptc/ErZn5GwXEAAONVb.jpg)
+<p align="center">
+  <img src="{{ site.github.url }}/images/cptc/ErZn5GwXEAAONVb.jpg" />
+</p>
 
 Consistent excellency isn't created overnight - it has to be nurtured and eventually passed on entirely to the next roster. All but one team member will graduate by the time CPTC 2021 comes, but the new roster won't have to start from scratch - they will be building upon the knowledge accumulated by every team before them, including ours. 
