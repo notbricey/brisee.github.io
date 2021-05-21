@@ -18,3 +18,5 @@ footer: 'follow me on <a href="https://twitter.com/bri5ee">twitter</a>'
 markdown: kramdown
 plugins:
   - jekyll-seo-tag
+kramdown:
+  parse_block_html: true
