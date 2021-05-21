@@ -3,7 +3,6 @@
 #google_analytics: UA-NNNNNNNN-N
 title: 'briSee'
 description: "cybersecurity blog about penetration testing, red teaming, blue teaming, and things."
-baseurl: "/blog"
 url: "https://blauersec.com"
 
 header_pages:
