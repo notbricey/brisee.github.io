@@ -7,8 +7,8 @@ categories: [CPTC]
 
 <style>
 img {
-  width: 100%;
-  height: auto;
+  width: 80%;
+  height: 80%;
 }
 </style>
 
