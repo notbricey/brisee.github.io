@@ -6,6 +6,9 @@ tags: [LDAP, TGT, TGS]
 categories: [HTB]
 ---
 
+- TOC
+{:toc}
+
 <style>
 img {
   width: 80%;
