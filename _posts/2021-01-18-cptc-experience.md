@@ -50,7 +50,9 @@ With a good understanding of penetration testing methodologies and frameworks, p
 
 VulnHub, HackTheBox, and TryHackMe all contain material that allows penetration testers to gain hands-on experience by being able to test their skills, as well as being exposed to the feeling of having to research and learn a new topic on the spot in order to complete the CTF. All three of these resources have a wide range of difficulties which can go from easy to extremely difficult which can allow students from all different skill levels to be able to continue to learn and grow. A general tip our team would suggest is ensuring there is a methodical approach in mind when using these resources. For example, when teams are going through these vulnerable boxes there should be a fair amount of understanding on what the vulnerability is, why is it vulnerable, how an exploit is taking advantage of the vulnerability, and lastly how someone could fix the vulnerability to ensure their system is more secure. Going through this process, teams will begin to gain a better understanding of why vulnerabilities and exploits may exist and begin to develop a sense of pattern recognition that can lead teams to discover vulnerabilities quicker and have an understanding of how they may be exploited.
 
-  ![htb](notbricey.github.io/images/cptc/htb.png)
+<p align="center">
+  <img src="{{ site.github.url }}images/cptc/htb.png" />
+</p>
 
 The Cal Poly Pomona CPTC team also trained on material specifically applying to web application security. For this, the CPTC team utilized [PortSwigger's Web Security Academy](https://portswigger.net/web-security), which provides free online training on web application security with documentation and hands-on labs which contain topics such as SQL injection, Cross-site scripting (XSS), OAuth authentication, and much more. As CPTC attempts to replicate industry-like environments, having a good understanding of web application security is essential as there is a high likelihood of web applications being present in the CPTC environment as well as in the industry.
 
@@ -84,7 +86,9 @@ Western Regionals CPTC hosted by Stanford had us RDP into Windows jumpboxes and 
 
 When you have over 20 active systems to pentest in under a day, keeping track of each system's completion is crucial. Our red-teaming platform nVis let us mark boxes as complete, in progress, or needing a second look.
 
-[ ![]({{ site.github.url }}/images/cptc/nVis Screenshot.png) ]({{ site.url }}/images/cptc/nVis Screenshot.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/cptc/nVis Screenshot.png"/>
+</p>
 
 We split our efforts and everyone focused on technologies they had the strongest background in - we got initial access in multiple places pretty quick. First, our password spray against the Windows boxes hit a jackpot - Domain Admin credentials. Second, we found an exploit for and got remote code execution on the company help desk web application. And finally, we got a web shell on the main web server using the allowed PUT method.
 
@@ -104,7 +108,9 @@ It is highly encouraged that teams go into these competitions with a rough idea 
 
 The CPTC finals were a technological feat made possible thanks to the Rochester Institute of Technology, who hosted it from their new [Cyber Range](https://www.rit.edu/cybersecurity/cyber-range), which is their brand new cybersecurity training and competition center. If not for COVID-19, we would have been there in-person for the global round of CPTC.
 
-[ ![]({{ site.github.url }}/images/cptc/GCIoutside.jpg) ]({{ site.github.url }}/images/cptc/GCIoutside.jpg)
+<p align="center">
+  <img src="{{ site.github.url }}/images/cptc/GCIoutside.jpg"/>
+</p>
 
 Once we were connected to the competition VDI and all of our scripts and infrastructure was deployed, we hit a roadblock the competition organizers wanted us to face - network segmentation. Next Generation Power and Water actually took our advice from the initial engagement and implemented strict access control lists, effectively barring us from communicating with 2 of the 3 subnets in scope. To add to the difficulty of the engagement, competition organizers patched off and secured nearly every vulnerability in the 1 subnet we had access to. NGPEW sprinkled in some rabbit holes for us to go down and in the absence of any other vectors, we followed some of them. Let's just say our team can now recite the entire Rocket.Chat API documentation.
 
