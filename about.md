@@ -4,11 +4,14 @@ title: /about
 permalink: /about/
 ---
 
-This blog is the work of a very nerdy individual with too much time on their hands.
-<p>
-This is me doing my best to convey what I know about my time spent with computers. Working with them, repairing them, getting frustrated at them. Let this be a compendium of my successes and my failures. It is impossible for us to understand where we are going, if we don't know where we began.
-<p>
-And I hope that by viewing my journey, you may better understand your own. Whatever profession/destiny you have set out for yourself. Never give up on that. Use your goals to better understand the world around you,and how you relate to it.
+### whoami
+
+My name is Brice. I'm a recent CIS graduate with an emphasis in cybersecurity. I'm passionate about penetration testing, red teaming, blue teaming, cybersecurity competitions, and anything security related.
+
+### About The Blog
+
+This blog will consist of anything related to penetration testing, red teaming, blue teaming, other security related topics, and random things I find interesting. The goal of this blog is to be able to teach others about cybersecurity by not simply being a quick guide/walkthrough of CTFs, general topics, etc. but to go into depth and ensure clarity with technical concepts that arise. By having this approach to the blog, I hope that readers will be able to gain a thorough amount of information that will benefit them on their future endeavors in cybersecurity.
+
 
 <!-- # jekyll-theme-console
 <!-- 
