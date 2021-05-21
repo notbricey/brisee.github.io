@@ -5,10 +5,12 @@ modified: 2021-01-18
 categories: [CPTC]
 ---
 
+<style>
 img {
   width: 100%;
   height: auto;
 }
+</style>
 
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
