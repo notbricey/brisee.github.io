@@ -13,11 +13,13 @@ img {
 }
 </style>
 
-**The Global CPTC Experience | Unraveling the Tragedy of Smallville**
+# The Global CPTC Experience | Unraveling the Tragedy of Smallville
 
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
-` ` 
+&nbsp;
+
+
 <div style="position: absolute;">
   
 </div>
