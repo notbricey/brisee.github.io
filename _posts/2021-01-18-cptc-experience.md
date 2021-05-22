@@ -57,8 +57,8 @@ Penetration testing frameworks and methodologies are used to define procedures t
 - [Red Team: Adversarial Attack Simulation Exercises](https://abs.org.sg/docs/library/abs-red-team-adversarial-attack-simulation-exercises-guidelines-v1-06766a69f299c69658b7dff00006ed795.pdf)
 - [Open Source Security Testing Methodology Manual - OSSTMM](https://www.isecom.org/research.html)
 - [Threat Intelligence-Based Ethical Red Teaming TIBER-EU](https://www.ecb.europa.eu/pub/pdf/other/ecb.tiber_eu_framework.en.pdf)
-&nbsp;
 
+&nbsp;
 With a framework decided, such as the Cyber Kill Chain, understanding what each stage of the Cyber Kill Chain is and what it consists of can aid in understanding what tools, strategies, and methodologies go into each particular stage. For example, during the reconnaissance stage of the Cyber Kill Chain, the goal is to discover and collect information about a particular target. Tools can be used to gather information regarding target validation ([WHOIS](https://linuxconfig.org/look-up-website-information-with-whois-in-linux), [nslookup ](https://linux.die.net/man/1/nslookup)[dnsrecon](https://tools.kali.org/information-gathering/dnsrecon)), finding subdomains ([dig](https://linuxize.com/post/how-to-use-dig-command-to-query-dns-in-linux/), [Nmap](https://nmap.org/), [Sublist3r](https://tools.kali.org/information-gathering/sublist3r)), and fingerprinting ([Nmap](https://nmap.org/), [NetCat](https://www.varonis.com/blog/netcat-commands/), [Wappalyzer](https://www.wappalyzer.com/)). 
 &nbsp;
 
