@@ -146,7 +146,6 @@ pre { background-color: rgba(192,192,192,0.15);  border: none; border-radius: 6p
 .sidebar__right {
   margin-bottom: 1em;
 
-  @include breakpoint($large) {
     position: sticky !important; /* added to make toc scroll with page */
     float: right !important; /* added to make toc scroll with page */
     top: 0;
@@ -156,5 +155,4 @@ pre { background-color: rgba(192,192,192,0.15);  border: none; border-radius: 6p
     padding-left: 1em;
     padding-top: 1em !important; /* added to make toc scroll with page */
     z-index: 10;
-  }
 }
