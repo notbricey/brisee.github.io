@@ -1,6 +1,7 @@
 # Example Site settings
 
 #google_analytics: UA-NNNNNNNN-N
+title: ""
 description: "cybersecurity blog about penetration testing, red teaming, blue teaming, and things."
 url: "https://brisee.github.io"
 
