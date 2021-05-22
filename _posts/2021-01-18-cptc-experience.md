@@ -93,7 +93,7 @@ Lastly, the Cal Poly Pomona CPTC team utilized [Snap Labs](https://www.snaplabs.
 
 # OSINT
 
-Open Source Intelligence, also known as OSINT, is defined as is the practice of collecting information from published or otherwise publicly available sources. Once teams are provided information about the "client",  they are expected to perform OSINT and gather information. By using OSINT, we are able to learn about the organization and employees before beginning the engagement. OSINT is able to help steer our plan of action during competitions and can also reveal crucial information that can be used to gain knowledge of possible vectors into the network. 
+Open Source Intelligence, also known as OSINT, is defined as the practice of collecting information from published or otherwise publicly available sources. Once teams are provided information about the "client",  they are expected to perform OSINT and gather information. By using OSINT, we are able to learn about the organization and employees before beginning the engagement. OSINT is able to help steer our plan of action during competitions and can also reveal crucial information that can be used to gain knowledge of possible vectors into the network. 
 
 &nbsp;
 
