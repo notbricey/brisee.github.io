@@ -13,7 +13,7 @@ header_pages:
 #footer: 'follow us on <a href="https://twitter.com/">twitter</a>'
 
 #style: light # dark (default) or light
-
+header: 'test'
 footer: 'follow me on <a href="https://twitter.com/bri5ee">twitter</a>'
 markdown: kramdown
 plugins:
