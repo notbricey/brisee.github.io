@@ -12,9 +12,10 @@ img {
 }
 </style>
 
-{:toc}
-
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
+
+* toc
+{:toc}
 
 # Abstract:
 
