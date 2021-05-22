@@ -15,12 +15,47 @@ img {
 
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
-<div class="sticky-top" markdown="1">
+<div id="navbar" markdown="1">
 **Table of Contents**
 {: #toc }
 *  TOC
 {:toc}
 </div>
+
+/* Style the navbar */
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
 
 # Abstract:
 
