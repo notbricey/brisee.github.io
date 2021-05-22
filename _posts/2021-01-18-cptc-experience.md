@@ -15,7 +15,7 @@ img {
 
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
-<div class="sidenav" markdown="1">
+<div class="sticky-top" markdown="1">
 **Table of Contents**
 {: #toc }
 *  TOC
