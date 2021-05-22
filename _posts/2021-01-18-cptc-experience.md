@@ -59,6 +59,8 @@ Penetration testing frameworks and methodologies are used to define procedures t
 - [Threat Intelligence-Based Ethical Red Teaming TIBER-EU](https://www.ecb.europa.eu/pub/pdf/other/ecb.tiber_eu_framework.en.pdf)
 
 &nbsp;
+&nbsp;
+
 With a framework decided, such as the Cyber Kill Chain, understanding what each stage of the Cyber Kill Chain is and what it consists of can aid in understanding what tools, strategies, and methodologies go into each particular stage. For example, during the reconnaissance stage of the Cyber Kill Chain, the goal is to discover and collect information about a particular target. Tools can be used to gather information regarding target validation ([WHOIS](https://linuxconfig.org/look-up-website-information-with-whois-in-linux), [nslookup ](https://linux.die.net/man/1/nslookup)[dnsrecon](https://tools.kali.org/information-gathering/dnsrecon)), finding subdomains ([dig](https://linuxize.com/post/how-to-use-dig-command-to-query-dns-in-linux/), [Nmap](https://nmap.org/), [Sublist3r](https://tools.kali.org/information-gathering/sublist3r)), and fingerprinting ([Nmap](https://nmap.org/), [NetCat](https://www.varonis.com/blog/netcat-commands/), [Wappalyzer](https://www.wappalyzer.com/)). 
 &nbsp;
 
@@ -69,6 +71,8 @@ With a good understanding of penetration testing methodologies and frameworks, p
 - [HackTheBox](https://www.hackthebox.eu/)
 - [TryHackMe](https://tryhackme.com/)
 &nbsp;
+&nbsp;
+
 
 VulnHub, HackTheBox, and TryHackMe all contain material that allows penetration testers to gain hands-on experience by being able to test their skills, as well as being exposed to the feeling of having to research and learn a new topic on the spot in order to complete the CTF. All three of these resources have a wide range of difficulties which can go from easy to extremely difficult which can allow students from all different skill levels to be able to continue to learn and grow. A general tip our team would suggest is ensuring there is a methodical approach in mind when using these resources. For example, when teams are going through these vulnerable boxes there should be a fair amount of understanding on what the vulnerability is, why is it vulnerable, how an exploit is taking advantage of the vulnerability, and lastly how someone could fix the vulnerability to ensure their system is more secure. Going through this process, teams will begin to gain a better understanding of why vulnerabilities and exploits may exist and begin to develop a sense of pattern recognition that can lead teams to discover vulnerabilities quicker and have an understanding of how they may be exploited.
 &nbsp;
