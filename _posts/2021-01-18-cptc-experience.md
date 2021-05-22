@@ -14,7 +14,7 @@ img {
 
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
-[[_TOC_]]
+{{ content | toc_only }}
 
 # Abstract:
 
