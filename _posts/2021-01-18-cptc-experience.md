@@ -13,8 +13,28 @@ img {
 }
 </style>
 
+# The Global CPTC Experience | Unraveling the Tragedy of Smallville
+
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+<div class="sidenav">
+  {:toc}
+</div>
+  
+
+  
 # Abstract:
 
 This blog post's objective is to be used as a way to educate cybersecurity students that are interested in competing in the Collegiate Penetration Testing Competition about how we prepared as a team and what to expect from these competitions. This post can also be used as a starting guide for teams looking to become more competitive in their region. 
