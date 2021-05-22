@@ -18,7 +18,6 @@ img {
 by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https://svl.sh/)
 
 <div style="position: absolute;">
-    right: 0;
 </div>
 
 * TOC
