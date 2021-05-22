@@ -2,7 +2,7 @@
 layout: post
 title: The Global CPTC Experience | Unraveling the Tragedy of Smallville
 modified: 2021-01-18
-categories: [CPTC]
+categories: [Collegiate Penetration Testing Competition]
 toc: true
 ---
 
