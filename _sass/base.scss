@@ -24,7 +24,6 @@ p, ul, ol { margin: 0px;  color: $text-color; }
 a { text-decoration: underline;  color: $link-color; }
 a:hover { color: $background-color; background-color: $base-color; }
 .primary-text { color: $primary-color; }
-code { background-color: rgba(192,192,192,0.18);  border: none; border-radius: 3px; padding: 0.3px; font-size: 16.5px; color: rgba(255,255,255,0.8); }
 @media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
 /*h1:before { content: "#";  margin-right: 9px; }
 h2:before { content: "##";  margin-right: 9px; }
@@ -163,3 +162,4 @@ pre { background-color: rgba(192,192,192,0.26);  border: none; border-radius: 6p
 .highlight .vg { color: #008080 } /* Name.Variable.Global */
 .highlight .vi { color: #008080 } /* Name.Variable.Instance */
 .highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
+code { background-color: rgba(192,192,192,0.18);  border: none; border-radius: 3px; padding: 0.3px; font-size: 16.5px; color: rgba(255,255,255,0.8); }
