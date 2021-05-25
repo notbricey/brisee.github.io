@@ -24,7 +24,7 @@ by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https:/
   {:toc}
 </div> 
 
-{ :content: }
+{{ content }}
   
   
 # Abstract:
