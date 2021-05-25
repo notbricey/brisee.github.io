@@ -10,7 +10,7 @@ img {
   width: 80%;
   height: 80%;
 }
-  
+</style>
   
 # The Global CPTC Experience | Unraveling the Tragedy of Smallville
 
