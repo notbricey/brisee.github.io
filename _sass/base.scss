@@ -24,7 +24,7 @@ p, ul, ol { margin: 0px;  color: $text-color; }
 a { text-decoration: underline;  color: $link-color; }
 a:hover { color: $background-color; background-color: $base-color; }
 .primary-text { color: $primary-color; }
-code { background-color: rgba(192,192,192,0.9);  border: none; border-radius: 3px; padding: 0.3px; font-size: 16.5px; color: rgba(255,255,255,0.8); }
+code { background-color: rgba(192,192,192,0.18);  border: none; border-radius: 3px; padding: 0.3px; font-size: 16.5px; color: rgba(255,255,255,0.8); }
 @media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
 /*h1:before { content: "#";  margin-right: 9px; }
 h2:before { content: "##";  margin-right: 9px; }
@@ -103,7 +103,7 @@ textarea { vertical-align: top; }
 /**
  * Code and syntax highlighting
  */
-pre { background-color: rgba(192,192,192,0.15);  border: none; border-radius: 6px; padding: 4px;  overflow:auto;  font-size: 13px; color: rgba(255,255,255,0.8);  line-height: 2.2 !important; }
+pre { background-color: rgba(192,192,192,0.20);  border: none; border-radius: 6px; padding: 4px;  overflow:auto;  font-size: 13px; color: rgba(255,255,255,0.8);  line-height: 2.2 !important; }
 .highlight .c { color: #999988; font-style: italic } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .highlight .k { font-weight: bold } /* Keyword */
