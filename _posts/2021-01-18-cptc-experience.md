@@ -11,7 +11,21 @@ img {
   width: 80%;
   height: 80%;
 }
+  
 </style>
+ position: fixed; 
+ color: #fff; 
+ font-size: 14px; 
+ font-weight: 600; 
+ background: #0095ba; 
+ padding: 10px 10px 10px 36px; 
+ height: 100%; 
+ width: 330px; 
+ overflow: wrap; 
+ top: 0; 
+ left: 0; 
+<style>
+  
 
 # The Global CPTC Experience | Unraveling the Tragedy of Smallville
 
@@ -19,6 +33,14 @@ by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https:/
 
 &nbsp;
 
+<div id="sideMenu"> 
+	* TOC
+  {:toc}
+</div> 
+<div id="mainContent"> 
+	[CONTENT] 
+</div>   
+  
 
 <div style="position: absolute;">
   
