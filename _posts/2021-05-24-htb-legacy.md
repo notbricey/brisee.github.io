@@ -185,7 +185,7 @@ enum4linux complete on Sun May 23 09:08:26 2021
 
 Seeing the output of Enum4linux, it was able to get a null session meaning we were able to use an anonymous user by supplying a username and password of `''`, essentially an empty string. Looking at all of the output though we were not able to enumerate a lot. Sure we were able to get a null session, but we do not have the privileges to enumerate anything (note all of the `NT_STATUS_ACCESS_DENIED` messages). I could try to use other tools and see if they provide a different output (which isn't a bad thing to do), but this is looking like it will not budge in terms of gathering any information this way. So what's next?
 
-`&nbsp;`
+&nbsp;
 
 Looking into if SMB is vulnerable due to it being outdated is what I will be looking into next. This is fairly simple as Nmap has a feature known as the Nmap Scripting Enginge ("NSE"). NSE are simple scripts using the Lua programming language used to automate a variety of networking tasks. These tasks an include network discovery, version detection, and yes you guessed it, vulnerability detection. Nmap supplies a plethora of scripts to help us further enumerate and scan for vulnerabilities with SMB. Doing a quick google search of Nmap NSE SMB scripts will provide a lot of information on each specific script and what it is used for. For now, I will essentially be doing a full enumeration and vuln scan using a ton of NMAP scripts for SMB and seeing if anything is vulnerable.
 
@@ -374,7 +374,7 @@ And just like that we have a SYSTEM session. SYSTEM is the highest privileged se
 
 First, you can simply type `msfconsole` in your terminal to get access to the Metasploit Framework. From here I needed to search for the `ms17-010` vulnerability within Metasploit Framework to see if they have modules I can use to exploit this vulnerability. To do this, you can type in `search [exploit_name]` to find the exploit you are searching for and see if it is present. For me, this was `search ms17-010`. The one that worked the best for me was: `2  exploit/windows/smb/ms17_010_psexec            2017-03-14       normal   Yes    MS17-010 `. Now that we know the module exists, to use this module you are going to use the path that it provides. This would be `exploit/windows/smb/ms17_010_psexec`. 
 
-`&nbsp;`
+&nbsp;
 
 With that done, the only thing left to do is configure the module. To configure the module and see what values it needs to run, simply execute the `options` command. For this module, everything was already set in stone for the most part, the only thing that we needed to change was the `LHOST` and the `RHOST`. LHOST stands for local host, aka, your IP address. So this is going to be your HTB VPN IP address. Then there is RHOST, which stands for remote host. This is going to be the IP address of our target, so `10.10.10.4`. To enter in these values into the module, simply type the name and then an argument. For example: `RHOST 10.10.10.4`. This will set the RHOST as 10.10.10.4. All you need to do is set LHOST as well in a similar fashion and everything should be set. Now you can execute the `exploit` command and then get a shell! Easy as that.
 
