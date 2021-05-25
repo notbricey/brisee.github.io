@@ -3,7 +3,6 @@ layout: post
 title: The Global CPTC Experience | Unraveling the Tragedy of Smallville
 modified: 2021-01-18
 categories: [Collegiate Penetration Testing Competition]
-toc: true
 ---
 
 <style>
@@ -19,9 +18,6 @@ by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https:/
 
 &nbsp;
 
-
-* TOC
-{:toc}
 
 # Abstract:
 
