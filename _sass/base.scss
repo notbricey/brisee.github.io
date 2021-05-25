@@ -80,9 +80,22 @@ input[type=submit]:hover { color: $background-color; background-color: $base-col
 textarea { vertical-align: top; }
 
 ::-webkit-scrollbar {
-  height: 4px;              /* height of horizontal scrollbar ← You're missing this */
-  width: 4px;               /* width of vertical scrollbar */
-  border: 1px solid #d5d5d5;
+  height: 20px;              /* height of horizontal scrollbar ← You're missing this */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #434343;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #434343;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
 }
 
 /**
