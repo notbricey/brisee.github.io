@@ -24,7 +24,7 @@ p, ul, ol { margin: 0px;  color: $text-color; }
 a { text-decoration: underline;  color: $link-color; }
 a:hover { color: $background-color; background-color: $base-color; }
 .primary-text { color: $primary-color; }
-li { line-height: 1.5; white-space: nowrap; margin: 0 2px; padding: 0 5px; border: 1px solid lighten(#434343, 90); background-color: lighten(#434343, 95);
+li { line-height: 1.5; white-space: nowrap; margin: 0 2px; padding: 0 5px; border: 1px solid lighten(#434343, 90); background-color: lighten(#434343, 95); }
 @media only screen and (max-device-width: 500px) { * { font-size: $mobile-font-size !important; } }
 /*h1:before { content: "#";  margin-right: 9px; }
 h2:before { content: "##";  margin-right: 9px; }
