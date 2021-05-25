@@ -19,13 +19,14 @@ by [Alex Tselevich](https://nosecurity.blog/), Brice Lauer, [Silas Shen](https:/
 
 &nbsp;
 
-<div id="sideMenu"> 
-	* TOC
-  {:toc}
-</div> 
-
-{{ content }}
+<div style="position: absolute;">
   
+</div>
+
+* TOC
+{:toc}
+
+<div id="toc-skipped"></div>
   
 # Abstract:
 
