@@ -6,6 +6,17 @@ categories: [Hack The Box]
 ---
 # Hack The Box | Legacy
 
+&nbsp;
+
+<div style="position: absolute;">
+  
+</div>
+
+* TOC
+{:toc}
+
+<div id="toc-skipped"></div>
+
 ## Initial TCP Nmap Scan
 
 ```
