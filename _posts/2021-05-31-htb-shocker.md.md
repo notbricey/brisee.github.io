@@ -1,3 +1,18 @@
+---
+layout: post
+title: HTB Shocker
+modified: 2021-05-31
+categories: [Hack The Box]
+---
+
+<style>
+img {
+  width: 95%;
+  height: 95%;
+}
+</style>
+
+
 # HackTheBox | Shocker
 
 ## Initial TCP Nmap Scan
@@ -50,7 +65,9 @@ Looking at the port scans it is pretty similar to how a lot of HackTheBox boxes 
 
 Navigating to `10.10.10.56` we get the following page:
 
-![image-20210606214951168](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606214951168.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/shocker/image-20210606214951168.png" />
+</p>
 
 Just a simple web page that says "Don't Bug Me!". Checking the source code and just looking around I don't find anything of interest. Before I keep digging around, I am going to run a `Gobuster` scan to see if I can find any interesting directories. Running Gobuster and using the `dirbuster/directory-list-2.3-medium.txt` did not really give me anything interesting. I decided to go and run another wordlist against the host and used SecLists' `big.txt` file under `/usr/share/wordlists/seclists/Discovery/Web-Content/big.txt`. 
 
@@ -134,7 +151,9 @@ It simply is a script that shows the uptime of the system.
 
 We could also view this response in `Burp Suite` by using `GET /cgi-bin/user.sh` for the GET request.
 
-![image-20210614115510696](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614115510696.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/shocker/image-20210614115510696.png" />
+</p>
 
 Now all we need to do is simply change the `User-Agent` HTTP Header by having the Shellshock payload instead of Mozilla/5.0..... So `User-Agent` should look something like this: 
 
