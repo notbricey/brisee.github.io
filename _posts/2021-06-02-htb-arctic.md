@@ -58,11 +58,17 @@ Looking at the scans we see we have three ports open: 135, 8500, and 49154. 135 
 
 Doing some Googling I see that `port 8500` is known to host Adobe Cold Fusion, which is a web application development computing platform. Knowing this, I go ahead and navigate to `http://10.10.10.11:8500` and get an `Index` page.
 
-![image-20210614134636436](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614134636436.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614134636436.png" />
+</p>
+
 
 Clicking through the index is extremely slow for some reason. Either way, I was able to navigate to `CFIDE/administrator` and was given the following web page:
 
-![image-20210614135038773](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614135038773.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614135038773.png" />
+</p>
+
 
 So this is running Adobe Coldfusion 8. Looking at the source code by right clicking the web page and hitting "View Page Source" I saw some information about Adobe's copyright.
 
@@ -72,7 +78,10 @@ Copyright (c) 1995-2006 Adobe Software LLC. All rights reserved
 
 This gives me a general idea of where to look when I am searching for exploits. I went ahead and Googled "Coldfusion 8 2006 exploit" and stumbled across an [ExploitDB](Copyright (c) 1995-2006 Adobe Software LLC. All rights reserved) page. It is a directory traversal attack. A directory traversal attack is where a user can read arbitrary files on a server by traversing back parent directories and being able to read a file, such as `www.website.com/file?=../../../../../../../etc/passwd` will read the `/etc/passwd` file. In this case, it seems that ColdFusion8 stores password properties as a file under `ColdFusion8/lib/password.properties%00en`. Let's see if this directory traversal attack works. Navigating to `http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en` shows the following webpage:
 
-![image-20210614135612263](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614135612263.png)
+
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614135612263.png" />
+</p>
 
 We see the password, but it seems to be some sort of hash. I go ahead and use the tool `hash-identifier` to see what type of hash this is.
 
@@ -129,23 +138,38 @@ Least Possible Hashs:
 
 It shows that the possible hash is `SHA-1` or `MySQL5`. Knowing that it is most likely `SHA-1`, I use the website [CrackStation](https://crackstation.net/) to crack this SHA-1 hash value.
 
-![image-20210614135900216](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614135900216.png)
+
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614135900216.png" />
+</p>
+
 
 And we get the password as `happyday`. I went ahead and went back to `10.10.10.11:8500/CFIDE/administrator/` to try to login with `admin:happyday` and I successfully logged in. After awhile of waiting for the page to load, we finally see the following:
 
-![image-20210614143026142](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614143026142.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614143026142.png" />
+</p>
+
 
 Out of the list of options we can do on ColdFusion8, the **Scheduled Tasks** seemed the most interesting to me. The reason for this is we may be able to have it do a task for us and then return a reverse shell. Navigating to **Debugging & Logging > Scheduled Tasks** presents the following:
 
-![image-20210614143350074](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614143350074.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614143350074.png" />
+</p>
 
 Clicking on **Schedule New Task** shows us this:
 
-![image-20210614143438940](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614143438940.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614143438940.png" />
+</p>
+
 
 Seems we have a lot we can work with. The thing that seems the most interesting is that we can put a file into the task. Something to note is that the "File" field needs to be given where we want to put the file we are uploading. I navigated around the web service a bit and found that under **Server Settings > Settings Summary** the path for CFIDE which we saw earlier is located under the path `C:\ColdFusion8\wwwroot\CFIDE`. Now we know where we can put our file.
 
-![image-20210614145103932](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614145103932.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614145103932.png" />
+</p>
+
 
 Since the technology that is being ran for ColdFusion is Java, `.jsp` files will be the one we want to use to get a reverse shell. Knowing this, I am going to create a payload using `msfvenom` which is a payload generator and encoder. 
 
@@ -157,11 +181,17 @@ This will create a `.jsp` reverse shell with `LHOST` being your IP, and `LPORT` 
 
 Now we can go ahead and upload this through the scheduled task. I setup a simple HTTP server using the `python -m SimpleHTTPServer 80` command on the directory that has my `reverse.jsp` file.
 
-![image-20210614222004098](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614222004098.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614222004098.png" />
+</p>
+
 
 Now that we have our schedule tasks, we can click the green icon on the left to execute the task.
 
-![image-20210614194813933](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210614194813933.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/arctic/image-20210614194813933.png" />
+</p>
+
 
 Now let's start up our Netcat listener on port 1337 and then navigate to `10.10.10.11:8500/CFIDE/reverse.jsp`. 
 
