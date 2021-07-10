@@ -188,7 +188,7 @@ uid=1001(nibbler) gid=1001(nibbler) groups=1001(nibbler)
 I'm going to upgrade my shell to a more interactive shell. To do this, we enter in the following command:
 
 ````
-python3 -c 'import pty; pty.spawn("/bin/bash")'                                                 │
+python3 -c 'import pty; pty.spawn("/bin/bash")'
 ````
 
 After this, press `Ctrl-Z` and it will suspend your shell. After you do this, you will want to type `stty raw echo; fg` and hit enter. Right after you hit enter type `reset` and hit enter. Your terminal should have cleared and put you back in your shell. If you are prompted with which terminal you are using (if you are using tmux it might prompt this) you can type `screen` if you are using `tmux`. Now that my shell is upgrade, the first thing I did was type `sudo -l` to see if I can run anything as sudo with this user so I can escalate my privileges some how.
