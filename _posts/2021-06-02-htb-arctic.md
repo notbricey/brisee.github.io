@@ -1,3 +1,17 @@
+---
+layout: post
+title: HTB Arctic
+modified: 2021-06-02
+categories: [Hack The Box]
+---
+
+<style>
+img {
+  width: 95%;
+  height: 95%;
+}
+</style>
+
 # HackTheBox | Arctic
 
 ## Initial TCP Nmap Scan
