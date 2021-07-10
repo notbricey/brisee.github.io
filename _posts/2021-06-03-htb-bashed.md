@@ -46,11 +46,15 @@ Doing an Nmap scan, the only port that is open is `HTTP 80`. Knowing that, I am 
 
 Navigating to `http://10.10.10.68` within a web browser, I see the following:
 
-![image-20210615223533952](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210615223533952.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/bashed/image-20210615223533952.png" />
+</p>
 
 Looks almost like a Wordpress site. It is talking about `phpbash` which apparently helps a lot with pentesting. Clicking on the post which directs me to `10.10.10.68/single.html`, it shows some proof of concept of what `phpbash` is.
 
-![image-20210615223631377](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210615223631377.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/bashed/image-20210615223631377.png" />
+</p>
 
 Simply looking at this raises a lot of suspicion. `phpbash` is essentially a web shell. A web shell is just like any other type of shell, except we can interact with it through the web. If this is being hosted somewhere on this web application, I could gain direct access to the host and get a shell on the system. But to go and look for that, I am going to go ahead and start `ffuf` to do directory brute-forcing.
 
@@ -69,15 +73,23 @@ js                      [Status: 301, Size: 307, Words: 20, Lines: 10]
 
 The one that seems most interesting to me is `dev`. I go head and navigate to `http://10.10.10.68/dev/` and get an `Index of /dev`. 
 
-![image-20210615224125716](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210615224125716.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/bashed/image-20210615224125716.png" />
+</p>
 
 And what do you know, we see `phpbash.php`. Clicking on it directs me to `http://10.10.10.68/dev/phpbash.php`. 
 
-![image-20210615224205446](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210615224205446.png)
+
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/bashed/image-20210615224205446.png" />
+</p>
 
 Seems like I'm in a web shell. I'm gonna go ahead and try running some commands like `whoami` or `ls`. 
 
-![image-20210615224234777](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210615224234777.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/bashed/image-20210615224234777.png" />
+</p>
+
 
 I could try just navigating around this web shell and see if I can find anything of interest, but I am not the biggest fan of doing everything in a web shell. I'd be happier if I got a shell through a Netcat listener rather than interacting with a web shell. To do that, I went ahead and referenced a way to get a reverse shell via `Python` from [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#python). The following command I ran within the web shell was this:
 
