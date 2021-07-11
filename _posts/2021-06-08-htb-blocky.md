@@ -92,9 +92,7 @@ Before we dive in deeper doing some manual enumeration, I'm going to run a `gobu
 ```
 gobuster dir -u http://10.10.10.37/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php
 ```
-
 - `-u` specifies the target URL or Domain
-
 - `-w` specifies the wordlist we want to use followed by the path to the wordlist
 - `-x` searches for file extensions (dir mode only)
 
