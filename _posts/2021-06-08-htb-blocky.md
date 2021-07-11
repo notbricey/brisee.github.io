@@ -1,3 +1,17 @@
+---
+layout: post
+title: HTB Blocky
+modified: 2021-06-08
+categories: [Hack The Box]
+---
+
+<style>
+img {
+  width: 93%;
+  height: 93%;
+}
+</style>
+
 # HackTheBox | Blocky
 
 ## Initical TCP Nmap Scan
