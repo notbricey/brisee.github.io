@@ -131,7 +131,7 @@ Looking at the Nmap scans we see five ports: `22 - SSH, 139 / 445 - Samba smbd, 
 Looking at `10.10.10.111:9999` we see the following:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210703191400409.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703191400409.png" />
 </p>
 
 Looks like just a default Nginx page. I go ahead and run a `gobuster` scan against this since this page seems pretty odd just being out here with nothing really on it besides stating I should go to `http://forlic.htb:1880`. I run `gobuster` against this web application to see if I can find any interesting directories or files. Since this is using `nginx` and it is being hosted on a Unix system, this is most likely using `.php` so I will be adding that to my list of extensions for `gobuster`. Always look up the technologies of what is being ran so you can always scan accordingly and not miss out on possibly useful information.
@@ -143,26 +143,26 @@ gobuster dir -u http://10.10.10.111:9999 -w /usr/share/wordlists/dirbuster/direc
 Doing this I found a `phpinfo.php` file which can leak some useful information. Some useful information I got out of it is the PHP version which is ` 7.0.32-0ubuntu0.16.04.1`. We also see that it is running `Ubuntu 16.04`. This web application is also being hosted in `/var/www` and is being ran as `www-data`. So this is some nice information to keep in mind
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210703191610021.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703191610021.png" />
 </p>
 
 Next I saw a `/dev` and just got a 403 forbidden. I went and ran `gobuster` against this directory as well and got a `/backup` directory. Going to `http://10.10.10.111:9999/dev/backup` just showed a page that mentioned `/playsms`. Going to `http://10.10.10.111:9999/playsms` and see the following:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210707204307292.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210707204307292.png" />
 </p>
 
 There was also a `/backup` directory that `gobuster` found so navigating to `http://10.10.10.111:9999/backup` showed the following:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210703192008438.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703192008438.png" />
 </p>
 
 
 Going to `http://10.10.10.111:9999/backup/password.txt` shows text presenting: `password - imnothuman`. Within `http://10.10.10.111:9999/backup/user.txt` showed: `user - admin`. This is some valuable information that we can use in the future but for now let's keep looking at more interesting findings. `Gobuster` discovered a `/admin` directory as well. Navigating to `http://10.10.10.111:9999/admin/` shows the following:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210703194633008.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703194633008.png" />
 </p>
 
 Seems legit. I checked the source code of this page and found a `login.js` file which contained the following source code within `http://10.10.10.111:9999/admin/login.js`
@@ -201,7 +201,7 @@ So we see that this will properly authenticate if the username is `admin` and th
 I face palmed seeing this output as I just thought "what in the world am I looking at". I threw this into Google and thankfully found something pertaining to "Ook! Programming Language" Throwing it into an Ook! interpreter showed the following within the console:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210703194954558.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703194954558.png" />
 </p>
 
 Shows something in the console talking about a path`/asdiSIAJJ0QWE9JAS`. Within `http://10.10.10.111:9999/asdiSIAJJ0QWE9JAS/` there is some more encoded strings.
@@ -303,7 +303,7 @@ root@kali-[~/htb/frolic]cat index.php
 This looks like hex. Hex is A-F, and 0-9. That is about all I see here. I like using [CyberChef](https://gchq.github.io/CyberChef/) which is like a swiss army knife when it comes to encoding and decoding strings or trying to solve some cryptography challenges. I searched for "Hex" on the search bar on the top left and pasted into the "Input" section the string of hex and got the following output:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210707203458010.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210707203458010.png" />
 </p>
 
 ```
@@ -316,7 +316,7 @@ LS4gPCsrK1sgLT4tLS0gPF0+LS0gLS0tLS4gPCsrKysgWy0+KysgKys8XT4KKysuLjwgCg==
 Looks like Base64 again given the `==` padding. I'm going to stay in CyberChef for this one. Rather than using Hex, I looked up Base64 and pasted the string into "Input" and got the following output:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210707203609571.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210707203609571.png" />
 </p>
 
 ```
@@ -329,13 +329,13 @@ Looks like Base64 again given the `==` padding. I'm going to stay in CyberChef f
 No idea what this string is. I just throw the whole output into Google and cross my fingers. There is note about a `Brainfuck Language` which looks extremely similar to the string that was outputted. Using [this](https://www.dcode.fr/brainfuck-language) site, I go ahead and put the string into the interpreter and get the following output:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210707203745228.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210707203745228.png" />
 </p>
 
 We see in the console it outputted `idkwhatispass`. I note that down as it most likely is a password. I go back to `http://10.10.10.111:9999/playsms` and tried `admin:idkwhatispass` and was able to login. 
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210707205423109.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210707205423109.png" />
 </p>
 
 ### Low Privilege Shell
@@ -508,13 +508,13 @@ Image from https://m0chan.github.io/
 So going back to our idea of we have a program that just asks for a user's name, let's say that we put a ton of A's as our input. So what happens is this buffer space is going to fill up with our A's and go downwards. If the buffer space is being properly sanitized, then if the buffer space gets filled with A's, it should reach the `EBP` and stop. 
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/bof.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/bof.png" />
 </p>
 
 However, if the buffer space is not being properly sanitized, the A's will go past the buffer space, past the `EBP`, and into the `EIP`. 
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/bof2.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/bof2.png" />
 </p>
 
 This is really interesting because the `EIP` is a return address. What we can do is use this address to point to directions that we instruct. These directions are going malicious code that ultimately gives us a reverse shell. To do this, we need to find where exactly the buffer overflows at. This is so right after the buffer overflows, we can implement our malicious code to get a shell. Typically this is done by injecting shellcode and jumping to the address that holds that shellcode. But for this box, we will be doing what is known at "ret2libc" or "return to libc". If you do not know what `libc` is, `libc` is just the C (programming language) library. So the idea behind `ret2libc` is rather than injecting shellcode and jumping to the address that is holding that shellcode, we can use functions that are already available in the C library. Just as an example, there are functions in the C library like `system()` which can execute `/bin/bash`, etc. So the ultimate idea is to `find where we overflow the buffer (padding)`, point to the address of `system()`, point to the address of `exit()`, `point to /bin/bash or /bin/sh`. The other way (doing it with injecting shellcode and jumping to the address that holds that shellcode) would look like `find where we overflow the buffer (padding)`, `point to new return address`, `NOP` (no-operation; "slide the CPU's instruction execution flow to the next memory address"), `shellcode`. Now that we have an idea of what we need to do, let's try it.
