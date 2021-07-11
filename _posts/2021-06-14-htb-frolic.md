@@ -155,7 +155,7 @@ Next I saw a `/dev` and just got a 403 forbidden. I went and ran `gobuster` agai
 There was also a `/backup` directory that `gobuster` found so navigating to `http://10.10.10.111:9999/backup` showed the following:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703192008438.png" />
+  <img src="{{ site.github.url }}/images/htb/frolic/image-20210703192008438.png" width="320" height="100" />
 </p>
 
 
