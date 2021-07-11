@@ -69,7 +69,7 @@ There isn't really a whole lot I am thinking about besides looking into `HTTP` o
 Navigating to `10.10.10.8` the following web page is presented:
 
 <p align="center">
-  <img src="{{ site.github.url }}/images/htb/blocky/image-20210614085519968.png" />
+  <img src="{{ site.github.url }}/images/htb/optimum/image-20210614085519968.png" />
 </p>
 
 Google searching for `HTTP File Server`, we start to understand that this is a free web server that is designed for publishing and sharing files. There are also a plethora of exploits available by searching up `HTTP File Server 2.3 exploit` on Google. The one I am going to use is the one from [ExploitDB](https://www.exploit-db.com/exploits/39161). 
