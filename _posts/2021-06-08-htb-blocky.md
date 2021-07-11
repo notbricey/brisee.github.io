@@ -75,11 +75,15 @@ Looking at the scans, there is nothing too interesting just observing the ports.
 
 Visiting the website we see the following:
 
-![image-20210606183037411](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606183037411.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606183037411.png" />
+</p>
 
 There are some posts here welcoming us to Blockycraft. 
 
-![image-20210606183158640](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606183158640.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606183158640.png" />
+</p>
 
 Clicking on it we can see that this post was created by the user "Notch". Whenever we see any posts or usernames whether it was found on a web page, forum, FTP share, etc. always note down usernames. It can be super helpful in the future if we find a password somewhere and we could perform a password spray from the usernames we found. 
 
@@ -129,13 +133,18 @@ Looking at the results we see a good amount of directories we can look into. I s
 
 Navigating to `10.10.10.37/phpmyadmin/` we see the following:
 
-![image-20210606185730998](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606185730998.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606185730998.png" />
+</p>
+
 
 So we do indeed have `phpMyAdmin` running. If you are unaware of what `phpMyAdmin` is, it is a free and open source administration tool for MySQL and MariaDB. Since this web server is running under Ubuntu, this most likely has a `LAMP` stack. `LAMP` is an acronym that stands for `Linux, Apache, MySQL/MariaDB, PHP`. All of these together help run the Wordpress web server that is running on this host. So `phpMyAdmin` makes a lot of sense to have implemented as an administrator since you can administer your databases with ease with `phpMyAdmin`. Also knowing that `phpMyAdmin` is used to administer databases, this is also a gold mine for an adversary. Since we are trying to hack into this host, this will definitely be something we should keep in the back of our mind for later if we find valid credentials somewhere.
 
 Viewing the `plugins` directory by navigating to `10.10.10.37/plugins/` we are presented with the following:
 
-![image-20210606190141920](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606190141920.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606190141920.png" />
+</p>
 
 We are presented with two `.jar` files. I'm going to go ahead and download them and observe on my own host. If you unaware of what a `.jar` file is, it is a "Java ARchive". These are used to aggregate Java class files and associated metadata, resources, etc. into one file so it is easier to distribute. To analyze what is inside the `.jar` file, we can simply `unzip` the file using the command `unzip` and then we can also use `JD-GUI` which is a standalone graphical utility that displays Java source codes of `.class` files. 
 
@@ -163,23 +172,31 @@ Looking into the `com` directory, there is another directory named `myfirstplugi
 jd-gui
 ```
 
-![image-20210606191100318](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606191100318.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606191100318.png" />
+</p>
 
 On the top right just hit `File` --> `Open File`, and then navigate to where your `BlockyCore.class` file is. 
 
 Opening up the file we see the following:
 
-![image-20210606191144693](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606191144693.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606191144693.png" />
+</p>
 
 Instantly we see that is a `sqlUser` and `sqlPass` string variable. Noting these down and looking into the other `.jar` file, there wasn't anything particularly interesting that I saw. Seeing that I ran into a roadblock after looking around for about 15-30 minutes, I decided to take a step back and try to use what I have so far. So far we see that there is an exposed `phpMyAdmin` and we also have possible credentials. Let's go ahead and see if we can try these creds against `phpMyAdmin`.
 
 Using the credentials `root:8YsqfCTnvxAUeduzjNSXe22` I was able to access `phpMyAdmin`. 
 
-![image-20210606191741110](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606191741110.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606191741110.png" />
+</p>
 
 The first thing I wanted to look into was either the `wordpress` database or the `mysql` database to see if I can find any hashed passwords and see if I could crack them. I was able to find one under `wordpress --> wp_users` with the user `Notch`. I attempted to crack the password with `hashcat` which is a tool used to crack hashes given a hash and a wordlist but after awhile it seemed that the `rockyou.txt` wordlist was not going to crack this password.
 
-![image-20210606191620699](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210606191620699.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/blocky/image-20210606191620699.png" />
+</p>
 
 Again I hit another roadblock for about 30 minutes or so. I think back to what I have again and what I haven't tried. I jumped straight into `phpMyAdmin` to see if the hardcoded credentials I found worked for `phpMyAdmin` and it did but I haven't tried it everywhere. I remembered that `SSH` was open so maybe I can remote into the host we are attacking with credentials like `root:8YsqfCTnvxAUeduzjNSXe22` or `notch:8YsqfCTnvxAUeduzjNSXe22`. I tried `root:8YsqfCTnvxAUeduzjNSXe22` and... nothing. I then also tried `notch:8YsqfCTnvxAUeduzjNSXe22` and... it worked!
 
@@ -222,4 +239,3 @@ root
 ```
 
 And that's it for this box!
-
