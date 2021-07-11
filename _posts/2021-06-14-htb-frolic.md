@@ -5,12 +5,6 @@ modified: 2021-06-14
 categories: [Hack The Box]
 ---
 
-<style>
-img {
-  width: 93%;
-  height: 93%;
-}
-</style>
 
 # HackTheBox | Frolic
 
