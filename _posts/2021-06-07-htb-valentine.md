@@ -84,7 +84,9 @@ My initial thoughts based on the Nmap scans are pretty simple as the ports here 
 
 Going to `10.10.10.79` only shows a picture of a bleeding heart and someone who looks terrified.
 
-![image-20210630182145162](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210630182145162.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/valentine/image-20210630182145162.png" />
+</p>
 
 I check the page source code and don't see anything interesting there. Before I dive in too deep I go ahead and run a `gobuster` to do some directory bruteforcing against this host.
 
@@ -94,7 +96,9 @@ gobuster dir -u 10.10.10.79 -w /usr/share/wordlists/dirbuster/directory-list-2.3
 
 I found an interesting directory: `/dev`.
 
-![image-20210627074627958](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210627074627958.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/valentine/image-20210627074627958.png" />
+</p>
 
 Within `notes.txt` is the following:
 
@@ -117,7 +121,9 @@ Within `hype_key` is the following:
 
 `hype_key` is ASCII hex. Putting it into burp we can see the following output:
 
-![image-20210627074914698](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210627074914698.png)
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/valentine/image-20210627074914698.png" />
+</p>
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
@@ -318,7 +324,10 @@ Content-Length: 42
 
 We see this `$text` variable of some sort and what looks like a Base64 encoded string `aGVhcnRibGVlZGJlbGlldmV0aGVoeXBlCg==`. Decoding it from Base64 shows us the following output:
 
-![image-20210630173659219](C:\Users\brice\AppData\Roaming\Typora\typora-user-images\image-20210630173659219.png)
+
+<p align="center">
+  <img src="{{ site.github.url }}/images/htb/valentine/image-20210630173659219.png" />
+</p>
 
 To decode the Base64, you can just look on Google and type in "Base64 decoder", however, a great site that you should definitely have bookmarked is [CyberChef](https://gchq.github.io/CyberChef) which is a web app for encryption, encoding, compression, and data analysis. It can also decode things as we can see and has a vast amount of operations you can choose from so go and check it out! Anyways, back to the box. So we see that we have a `heartbleedbelievethehype` password here so I am assuming this is going to be the password for that encrypted key we had earlier. I am going to go ahead and use the `chmod` command which is used to change the access permissions of file system objects or modes. Changing  a file to `700` means that this file will only be able to be written, read, and executed by the root user. If you don't set the permissions correctly, you most likely will get an error message saying "Your permissions are too open"
 
