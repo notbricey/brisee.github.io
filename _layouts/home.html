@@ -9,7 +9,7 @@ layout: default
   <ul>
     {%- for post in site.posts -%}
     <li>
-      {%- assign date_format = "%F-%d-%Y" -%}
+      {%- assign date_format = "%Y-%m-%d" -%}
        -rw-rw-r--. 1 bri5ee bri5ee 1337 {{ post.date | date: date_format }}  <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
     </li>
     {%- endfor -%}
