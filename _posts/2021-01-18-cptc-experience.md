@@ -2,6 +2,7 @@
 layout: post
 title: The Global CPTC Experience | Unraveling the Tragedy of Smallville
 categories: [Collegiate Penetration Testing Competition]
+permalink: /cptc/cptc-experience/
 ---
 
 <style>
