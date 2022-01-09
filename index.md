@@ -1,5 +1,5 @@
 ---
-title:  ~/home/bri5ee
+title:  /home/bri5ee
 layout: home
 permalink: /
 ---
