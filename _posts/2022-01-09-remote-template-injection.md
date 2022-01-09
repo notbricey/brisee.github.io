@@ -8,7 +8,7 @@ categories: [Red Team]
 <style>
 img {
   width: 85%;
-  height: 80%;
+  height: 85%;
 }
 </style>
 
@@ -115,7 +115,7 @@ Note the `Target` variable is pointing to `\\192.168.110.134\share\fax.dotm` whi
 
 Upon hitting "Enable Content" a callback is sent to the C2. 
 ### Cracking Passwords (w/ SMB Server)
-Note that since an SMB server is being used, NTLMv2 hashes are getting pulled in as well. If the password is fairly weak (found in `rockyou.txt` wordlist. Or if the password was found in a data breach and has not been changed/has been frequently reused), there is the possibility that one could grab the NTLMv2 hash and crack the hash offline. Hashes can be cracked using `hashcat` which is a password recovery tool. Providing a hash-type (using `-m`. Hash-modes can be found [here](https://hashcat.net/wiki/doku.php?id=example_hashes)) and specifying a word list can attempt to crack the hash.
+Note that since a SMB server is being used, NTLMv2 hashes are getting pulled in as well. If the password is fairly weak (found in `rockyou.txt` wordlist. Or if the password was found in a data breach and has not been changed/has been frequently reused), there is the possibility that one could grab the NTLMv2 hash and crack the hash offline. Hashes can be cracked using `hashcat` which is a password recovery tool. Providing a hash-type (using `-m`. Hash-modes can be found [here](https://hashcat.net/wiki/doku.php?id=example_hashes)) and specifying a word list can attempt to crack the hash.
 ```bash
 hashcat -m 5600 'test::DESKTOP-Q4KKFJ3:4141414141414141:bf11f3d670873af69d32b178565cdc92:010100000000000000d88628a805d8019cb252c2fb91d9ef00000000010010004d00710074006c0050006b00450043000200100066007800540047004a00650042007600030010004d00710074006c0050006b00450043000400100066007800540047004a006500420076000700080000d88628a805d80106000400020000000800300030000000000000000100000000200000ac5096548670bd431acfd34a6a324dd51aa026fdb08fc2f7acde870e7ee263440a001000000000000000000000000000000000000900280063006900660073002f003100390032002e003100360038002e003100310030002e003100330034000000000000000000' /usr/share/wordlists/rockyou.txt                            
 hashcat (v6.1.1) starting...
