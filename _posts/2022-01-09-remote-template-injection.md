@@ -5,6 +5,15 @@ modified: 2022-01-09
 categories: [Red Team]
 ---
 
+<style>
+img {
+  width: 100%;
+  height: 90%;
+}
+</style>
+
+# Remote Template Injection
+
 <div style="position: absolute;">
   
 </div>
@@ -14,14 +23,6 @@ categories: [Red Team]
 
 <div id="toc-skipped"></div>
 
-<style>
-img {
-  width: 100%;
-  height: 90%;
-}
-</style>
-
-# Remote Template Injection
 ## Introduction
 This blog post was made to give security awareness to both Blue and Red teamers on tactics, techniques, and procedures (TTPs) used by adversaries. The technique is broken down to give Blue/Red teamers insight on how and why this technique works to better Red Team Operations, as well as aid Blue teamers in identifying potential opportunities on how to properly detect and respond to this attack.
 ## What is Remote Template Injection?
