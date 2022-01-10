@@ -17,7 +17,7 @@ title: /categories
     {% for post in site.categories[category_name] %}
     <article class="archive-item">
 <li>
-      {%- assign date_format = "%Y年-%m月-%d日" -%}
+      {%- assign date_format = "%Y年%m月%d日" -%}
        [{{ post.date | date: date_format }}] <a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a>
 </li>
     </article>
