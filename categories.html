@@ -18,7 +18,7 @@ title: /categories
     <article class="archive-item">
 <li>
       {%- assign date_format = "%Y年%m月%d日" -%}
-       [{{ post.date | date: date_format }}] <a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a>
+       [{{ post.date | date: date_format }}] - <a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a>
 </li>
     </article>
     {% endfor %}
