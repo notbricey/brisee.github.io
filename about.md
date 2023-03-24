@@ -6,7 +6,12 @@ permalink: /about/
 
 ### whoami
 
-My name is Brice. I'm a recent CIS graduate with an emphasis in cybersecurity. I'm passionate about penetration testing, red teaming, blue teaming, cybersecurity competitions, and anything security related.
+My name is Brice. I'm a recent CIS graduate with an emphasis in cybersecurity. Currently, I have a career in Detection Engineering and IR, coaching Cal Poly Pomona's cybersecurity club SWIFT's competition teams such as their Collegiate Penetration Testing Competition ("CPTC") team, and am always looking to learn more about cyber in my free time. Essentially I am passionate about penetration testing, red teaming, detection engineering and IR, cybersecurity competitions, and anything security related.
+
+## Certifications / Trainings
+
+- Certified Red Team Operator (CRTO)
+- SpecterOps Adversary Tactics: Detection
 
 ### About The Blog
 
