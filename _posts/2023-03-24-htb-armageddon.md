@@ -2,11 +2,15 @@
 layout: post
 title: HTB Armageddon
 modified: 2023-03-24
-tags: [Drupal, MySQL, Snap]
 categories: [Hack The Box]
 ---
 
-&nbsp;
+<style>
+img {
+  width: 100%;
+  height: 90%;
+}
+</style>
 
 # HTB Armageddon
 
@@ -18,13 +22,6 @@ categories: [Hack The Box]
 {:toc}
 
 <div id="toc-skipped"></div>
-
-<style>
-img {
-  width: 100%;
-  height: 100%;
-}
-</style>
 
 # Overview
 Armageddon is an easy Linux box that starts off with only having ports 22 and 80 open. Port 80 is hosting Drupal 7.56, which is vulnerable to an exploit known as[ Drupalgeddon 2](https://unit42.paloaltonetworks.com/unit42-exploit-wild-drupalgeddon2-analysis-cve-2018-7600/) which allows for remote code execution. From there we get a shell as `apache` and find a file within `/var/www` with MySQL credentials. We are able to utilize the credentials to dump the `users` table of `drupal` and get a `Drupal 7` hash for a user named `brucetherealadmin` and are able to SSH as the user due to password reuse. From there we see running `sudo -l` that the user is able to install packages using `snap`. We craft a malicious `snap` package by referencing the `.snap` package utilized in the `dirty_sock` exploit and get root. Now that the overview is out of the way, let's walkthrough the box.
