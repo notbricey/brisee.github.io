@@ -4,7 +4,7 @@ title: /about
 permalink: /about/
 ---
 
-### whoami
+## whoami
 
 Recent CIS graduate with an emphasis in cybersecurity. Go by the alias bri5ee (brr-eye-see). Ex-CCDC Linux Team / Ex-CPTC competitor at Cal Poly Pomona. Currently, I do Detection Engineering and IR for a living, am an active Red Team member for the Western Regional Collegiate Cyber Defense Competition ("WRCCDC"), coaching Cal Poly Pomona's cybersecurity club SWIFT's competition teams such as their Collegiate Penetration Testing Competition ("CPTC") team, and am always looking to learn more about cyber in my free time. Essentially I am passionate about penetration testing, red teaming, detection engineering and IR, cybersecurity competitions, and anything security related.
 
@@ -13,7 +13,7 @@ Recent CIS graduate with an emphasis in cybersecurity. Go by the alias bri5ee (b
 - Certified Red Team Operator (CRTO)
 - SpecterOps Adversary Tactics: Detection
 
-### About The Blog
+## About The Blog
 
 This blog will consist of anything related to penetration testing, red teaming, blue teaming, other security related topics, and random things I find interesting. The goal of this blog is to be able to teach others about cybersecurity by not simply being a quick guide/walkthrough of CTFs, general topics, etc. but to go into depth and ensure clarity with technical concepts that arise. By having this approach to the blog, I hope that readers will be able to gain a thorough amount of information that will benefit them on their future endeavors in cybersecurity.
 
