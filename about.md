@@ -6,7 +6,7 @@ permalink: /about/
 
 ### whoami
 
-Recent CIS graduate with an emphasis in cybersecurity. Go by the alias bri5ee (brr-eye-see). Currently, I do Detection Engineering and IR for a living, coaching Cal Poly Pomona's cybersecurity club SWIFT's competition teams such as their Collegiate Penetration Testing Competition ("CPTC") team, and am always looking to learn more about cyber in my free time. Essentially I am passionate about penetration testing, red teaming, detection engineering and IR, cybersecurity competitions, and anything security related.
+Recent CIS graduate with an emphasis in cybersecurity. Go by the alias bri5ee (brr-eye-see). Currently, I do Detection Engineering and IR for a living, am an active Red Team member for the Western Regional Collegiate Cyber Defense Competition ("WRCCDC"), coaching Cal Poly Pomona's cybersecurity club SWIFT's competition teams such as their Collegiate Penetration Testing Competition ("CPTC") team, and am always looking to learn more about cyber in my free time. Essentially I am passionate about penetration testing, red teaming, detection engineering and IR, cybersecurity competitions, and anything security related.
 
 ## Certifications / Trainings
 
