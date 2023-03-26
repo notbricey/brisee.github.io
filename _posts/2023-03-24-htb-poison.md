@@ -189,6 +189,7 @@ So in our case it'll look a little something like this:
 ssh -L 5901:127.0.0.1:5901 charix@10.10.10.84
 ```
 So now on port `5901` on our host will be what is being hosted on `10.10.10.84:5901`. 
+
 ```shell
 ┌──(root㉿commando)-[/mnt/c/Users/bri5ee/Documents/htb/poison]
 └─# ssh -L 5901:127.0.0.1:5901 charix@10.10.10.84
@@ -222,6 +223,7 @@ csh: The terminal database could not be opened.
 csh: using dumb terminal settings.
 charix@Poison:~ %
 ```
+
 I go ahead and open up `vncviewer` and use the `-passwd` flag to pass the file `secret` over to see if I can authenticate into VNC.
   <img src="{{ site.github.url }}/images/htb/poison/Pasted image 20230324051634.png" />
 Note that it's using `127.0.0.1:5901` and not `10.10.10.84:5901`. Again, this is because we are using local port forwarding so we can access that port locally on our host from the remote host. After hitting "Connect" we see we got a shell as root!
