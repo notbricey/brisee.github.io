@@ -57,7 +57,6 @@ I probably did this in one of the most ineffective ways in terms of time, but ba
   <img src="{{ site.github.url }}/images/htb/poison/Pasted image 20230324032648.png" />
 And we find a user named `charix`! We can test if we can use this user alongside the credentials we got earlier to log in via SSH:
 ```shell
-```shell
 ssh charix@10.10.10.84
 The authenticity of host '10.10.10.84 (10.10.10.84)' can't be established.
 ED25519 key fingerprint is SHA256:ai75ITo2ASaXyYZVscbEWVbDkh/ev+ClcQsgC6xmlrA.
