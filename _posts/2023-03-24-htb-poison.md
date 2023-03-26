@@ -1,3 +1,27 @@
+---
+layout: post
+title: HTB Poison
+modified: 2023-03-25
+categories: [Hack The Box]
+---
+
+<style>
+img {
+  width: 100%;
+  height: 90%;
+}
+</style>
+
+
+<div style="position: absolute;">
+  
+</div>
+
+* TOC
+{:toc}
+
+<div id="toc-skipped"></div>
+
 Poison is a medium rated Linux box. This box starts off by having two ports open: 22 (SSH) and 80 (HTTP). There were two vectors to get an initial shell on the host which is encoded credentials achieved via LFI in the `file` parameter of `browse.php` to view `/etc/passwd` for users on the host, and a file shown on `listfiles.php` which contained the encoded credential and led to me being able to use a user on the host and the password from the file called `pwdbackup.txt` to log in via SSH. The other way is via `PHP Log Poisoning` which will get us a user as `www` which will be the second vector I look into in this blog post. Using the SSH session I got, there was a `secret.zip` that I exfiltrated off the box onto my host. The zip was password protected, but had credential reuse from the `pwdbackup.txt` and was able to retrieve a `secret` file. The `secret` file gave us access to a VNC session as root which needed to be local port forwarded to our host to be able to access it. With the overview out of the way, let's jump into the box.
 # TCP Nmap Scan
 ```lua
