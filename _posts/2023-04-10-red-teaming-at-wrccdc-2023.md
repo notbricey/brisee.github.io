@@ -8,7 +8,7 @@ categories: [Red Team]
 <style>
 img {
   width: 80%;
-  height: 80%;
+  height: 70%;
 }
 </style>
 
@@ -24,7 +24,12 @@ img {
 <div id="toc-skipped"></div>
 
 
+
+<div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+
   <img src="{{ site.github.url }}/images/red-team/ccdc-red-team/Pasted image 20230409152201.png" />
+
+</div>
 
 From March 31st to April 1st 2023 was the Western Regional Collegiate Cyber Defense Competition's regional competition. If you are new to the Collegiate Cyber Defense Competition scene, essentially this is a competition for college students to focus on the operational aspects of protecting and managing existing network infrastructure against an active Red Team. Competitors are overall scored on their ability to keep critical business services (CMS, Databases, Web Services, DNS, etc.) up and complete administrative tasks. Whichever team is able to do these set of tasks the best while defending themselves against Red Team ends up as the winner. 
 
