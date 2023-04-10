@@ -7,7 +7,7 @@ categories: [Red Team]
 
 <style>
 img {
-  width: 80%;
+  width: 90%;
   height: 70%;
 }
 </style>
