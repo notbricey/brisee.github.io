@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RRed Teaming at WRCCDC 2023
+title: Red Teaming at WRCCDC 2023
 modified: 2023-04-10
 categories: [Red Team]
 ---
