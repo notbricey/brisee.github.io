@@ -106,7 +106,7 @@ It is extremely common that applications and services that are running in Blue T
 or me personally, I would use common Windows exploits like the ones I mentioned to get initial access onto the host and begin enumerating around the host for PII or anything of interest to me. Something nice about Cobalt Strike is the ability to run exploits from `msfconsole` and have the sessions go into Cobalt Strike directly as beacons compared to gaining a ton of meterpreter sessions. If you'd like to read more about how that works, I'd highly suggest you go check out a blog post by the creator of Cobalt Strike Raphael Mudge's blog post about [Interoperability with the Metasploit Framework](https://www.cobaltstrike.com/blog/interoperability-with-the-metasploit-framework/).
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
 
-  <img src="{{ site.github.url }}/images/red-team/ccdc-red-team/Pasted image 20230408222159.pngg" />
+  <img src="{{ site.github.url }}/images/red-team/ccdc-red-team/Pasted image 20230408222159.png" />
 
 </div>
 
