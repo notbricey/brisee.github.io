@@ -20,6 +20,7 @@ h3 { font-size: 15px;  margin: 0px;  margin-top: 22px;  font-weight: bold;  colo
 h4 { font-size: 10px;  margin: 0px;  margin-top: 22px;  font-weight: bold;  color: $text-color; }
 h5 { font-size: 5px;  margin: 0px;  margin-top: 22px;  font-weight: bold;  color: $text-color; }
 h6 { font-size: 14px;  margin: 0px;  margin-top: 22px;  font-weight: bold;  color: $text-color; }
+p { margin-bottom: 1rem; }
 p, ul, ol { margin: 0px;  color: $text-color; }
 a { text-decoration: underline;  color: $link-color; }
 a:hover { color: $background-color; background-color: $base-color; }
