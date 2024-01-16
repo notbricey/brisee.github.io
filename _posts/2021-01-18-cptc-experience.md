@@ -14,7 +14,7 @@ img {
   
 # The Global CPTC Experience | Unraveling the Tragedy of Smallville
 
-by [Alex](https://nosecurity.blog/), Brice, [Silas](https://svl.sh/)
+by [NoSecurity](https://nosecurity.blog/), bri5ee, [Silas](https://svl.sh/)
 
 &nbsp;
 
