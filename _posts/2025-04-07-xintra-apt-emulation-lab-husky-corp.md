@@ -224,7 +224,7 @@ The email was sent from `huskycorphelpdesk@gmail.com` on Sat, 20 Apr 2024 17:41:
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250128172537.png" />
 </div>
 The provided URL within the email is an OAuth 2.0 authorization request that directs a user to grant permissions to an application. We can break down the parameters within the link to identify the use case of it:
-1. . `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`
+1.  `https://login.microsoftonline.com/common/oauth2/v2.0/authorize`
 	- This is the authorization endpoint of Microsoft’s identity platform.
 	- It initiates the OAuth 2.0 flow, prompting the user to authenticate and consent to the requested permissions.
 	- The `common` tenant allows users from any Azure AD tenant or Microsoft account to authenticate.
@@ -277,8 +277,7 @@ Given that many permissions requested by the adversary were scoped for OneDrive 
 
 &nbsp;
 
-
-Additionally, permissions for reading and sending emails were granted during consent. These operations utilize Microsoft Graph API endpoints, making Graph API logs another critical source of evidence.Pivoting to Microsoft Graph API logs using the **AppId** reveals activity originating from the OAuth application itself. Unlike UAL logs, Graph API logs do not display UPNs but instead use **userId**, which corresponds to `lonnard@huskycorp.net`. Searching for both `userId` and `appId` uncovered **29 Graph API events**.
+Additionally, permissions for reading and sending emails were granted during consent. These operations utilize Microsoft Graph API endpoints, making Graph API logs another critical source of evidence.Pivoting to Microsoft Graph API logs using the **AppId** reveals activity originating from the OAuth application itself. Unlike UAL logs, Graph API logs do not display UPNs but instead use **userId**, which corresponds to `lonnard@huskycorp.net`. Searching for both `userId` and `appId` uncovered 29 Graph API events.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250203232015.png" />
 </div>
@@ -298,8 +297,7 @@ These logs revealed that inbox rules were altered to redirect specific emails ma
 &nbsp;
 
 
-These emails were forwarded to an external address controlled by the attacker:  
-`tankard_serialized_holographic_198282091@proton[.]me`.
+These emails were forwarded to an external address controlled by the attacker: `tankard_serialized_holographic_198282091@proton[.]me`.
 # Phase 4: Internal Phish on Prem
 The compromised user, `lonnard@huskycorp.net`, consented to the malicious OAuth application named `Calendar-Sync`. Among the permissions granted, several were related to OneDrive and SharePoint, including read/upload capabilities. This makes file uploads a crucial area to investigate, as adversaries often use these permissions for exfiltration or to distribute malicious payloads internally. Pivoting to the operation `FileUploaded` in Unified Audit Logs (UAL) revealed four upload events, with one IP address standing out as suspicious.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
