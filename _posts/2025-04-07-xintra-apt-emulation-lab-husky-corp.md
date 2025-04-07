@@ -118,6 +118,10 @@ Here’s why focusing on this error is critical:
 In this case, two users stood out during this analysis:
 - `ashlee@huskycorp.net`
 - `lonnard@huskycorp.net`
+
+&nbsp;
+
+
 The findings suggested that adversaries had successfully obtained valid credentials for these accounts but were unable to successfully login due to the organization’s conditional access controls.
 # Phase 2: Investigating an Authenticated Insider / Compromised User
 Once evidence pointed to potentially compromised accounts, the next step was to investigate post-compromise activity. Threat actors who gain access to an Azure tenant often attempt to map their environment using Microsoft Graph API, a RESTful web API that provides unified access to Microsoft 365 services and data through a single endpoint, `https://graph.microsoft.com`. It enables developers to interact with a wide range of resources, including Azure Active Directory (Entra ID), SharePoint, OneDrive, Teams, Outlook, etc. By leveraging this API, applications can perform operations such as retrieving user information, managing files, accessing emails, and automating workflows. While it is a powerful tool for legitimate development and integration purposes, adversaries can exploit it for malicious activities if they gain unauthorized access. Authentication is required to use the API, typically via OAuth 2.0. Once authenticated with an access token that has appropriate permissions, users or applications can query the API to perform operations on the tenant's data. If an adversary gains access to valid credentials or compromises an application with permissions to the Microsoft Graph API, they can use it for reconnaissance or further exploitation. For example, an adversary could query the `/users` endpoint to enumerate details about users in the tenant. This information includes:
@@ -297,7 +301,10 @@ The provided URL within the email is an OAuth 2.0 authorization request that dir
 		- `User.Read`: Access basic user profile information.
 		- `offline_access`: Allows long-term access via refresh tokens.
 		- `openid`, `profile`: Grants access to OpenID Connect claims (e.g., user profile data).
-	These permissions indicate that the attacker seeks extensive control over email, files, and user data which will play a key part in scoping out where to look for malicious / anomalous activity.
+
+  &nbsp;
+
+These permissions indicate that the attacker seeks extensive control over email, files, and user data which will play a key part in scoping out where to look for malicious / anomalous activity.
 
 Searching for `OperationName : "Add service principal" and TargetResource.displayName : "Calendar-Sync"` will show one event of the service principal being added:
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
@@ -319,6 +326,10 @@ Knowing the permissions granted during consent provides a focused starting point
 Given that many permissions requested by the adversary were scoped for OneDrive and SharePoint access, Unified Audit Logs provide visibility into Microsoft 365 activity. Searching these logs using the **AppId** or **AppDisplayName**, alongside `user_name` (`lonnard@huskycorp.net`), reveals that:
 - The compromised user accessed **10 unique files** stored in SharePoint.
 - These files were downloaded using the malicious OAuth application.
+
+&nbsp;
+
+
 Additionally, permissions for reading and sending emails were granted during consent. These operations utilize Microsoft Graph API endpoints, making Graph API logs another critical source of evidence.Pivoting to Microsoft Graph API logs using the **AppId** reveals activity originating from the OAuth application itself. Unlike UAL logs, Graph API logs do not display UPNs but instead use **userId**, which corresponds to `lonnard@huskycorp.net`. Searching for both `userId` and `appId` uncovered **29 Graph API events**.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250203232015.png" />
@@ -335,6 +346,10 @@ These logs revealed that inbox rules were altered to redirect specific emails ma
 - "noreply"
 - "SMTP"
 - "shareholder report"
+
+&nbsp;
+
+
 These emails were forwarded to an external address controlled by the attacker:  
 `tankard_serialized_holographic_198282091@proton[.]me`.
 # Phase 4: Internal Phish on Prem
@@ -345,6 +360,10 @@ The compromised user, `lonnard@huskycorp.net`, consented to the malicious OAuth
 One of the uploaded files was particularly interesting:
 - **object_id**: `~tmpD6_NewDocument.html`
 - **client_ip**: `146[.]70[.]196[.]180`
+
+&nbsp;
+
+
 The file was uploaded via a web browser and categorized as a `Document/Attachment`. Given its anomalous nature, it is likely that the adversary intended to use this file as part of a phishing campaign to lure internal users into downloading and executing malicious content. Using the IP address `146[.]70[.]196[.]180` as a pivot point, UAL logs revealed that an email was sent from `Lonnard@huskycorp.net`. The email had the subject line `RE: FWD: FWD: [URGENT] Company Redundancies`, a title designed to evoke urgency and curiosity among recipients.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250204050409.png" />
@@ -377,6 +396,10 @@ This shortcut would launch `rundll32.exe` to execute a DLL (`libcryptx32.dll`) 
 - **Parent Process**: `explorer.exe` (indicating hands-on-keyboard activity).
 - **Current Directory**: `F:\` (where the ZIP file was mounted).
 - **Execution Time**: `2024-04-20 23:16:01 UTC`.
+
+&nbsp;
+
+ 
 This confirms that someone manually opened and executed the shortcut file through Windows Explorer.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250210225944.png" />
@@ -527,6 +550,10 @@ On line 9, we can see `az login --identity`. If a managed identity is attached t
 	- Download the secret `SecretKey` from `HuskyKey` and save it as a file called `tmp.x11-lock` on disk.
 - `az keyvault secret set --name Xillock --vault-name HuskyKey --value EnTaroAdun`
 	- Store a new secret named `Xillock` in the `HuskyKey` vault with the value `EnTaroAdun`.
+
+&nbsp;
+
+ 
 After identifying this as bash logs do not have timestamps, we can look into `/home/azureuser/.azure/commands` to see logs of Azure CLI commands ran to timeline this activity (assuming it is not timestomped):
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250212004904.png" />
@@ -536,6 +563,9 @@ After identifying this as bash logs do not have timestamps, we can look into `/h
 Pivoting back to potential indicators of compromise that occurred  in Phase 1, two accounts were of suspicion as an anomalous/malicious IP address (`103[.]216[.]220[.]45`) was identified bruteforcing user accounts and then subsequently successfully logging into them:
 - `ashlee@huskycorp.net`
 - `lonnard@huskycorp.net`
+
+&nbsp;
+
 Two logs of interest were identified for `ashlee@huskycorp.net`and would need remediation as they are an indicator of the user account being used for persistence:
 - User was added as an Owner to an application
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
@@ -551,10 +581,16 @@ If an attacker compromises a user with one of the following administrative roles
 - **Global Administrator**
 - **Hybrid Identity Administrator**
 - **External Identity Provider Administrator**
+
+&nbsp;
+
 An attacker with any of these roles can register a malicious domain to the tenant and configure it for federation. This allows them to impersonate any user in Microsoft 365 (M365) without requiring passwords or MFA. This technique bypasses all authentication requirements, enabling the attacker to log in as any user seamlessly. This method was notably used during the SolarWinds breach by Russian APT29. To detect and investigate this type of backdoor, looking in the following areas within Azure 
 1. **Federated Domain Additions**: Look for logs showing new domains being added to the tenant.
 2. **Immutable IDs**: These are created as part of the process to impersonate users.
 3. **Anomalous Logins**: Look for logins from unexpected IP addresses or unusual activity patterns.
+
+&nbsp;
+
 Logs related to adding federated domains can be found in Azure Audit Logs under the `DirectoryManagement` category. Specific activities are:
 - `Add Unverified Domain`
 - `Verify Domain`
