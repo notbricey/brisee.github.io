@@ -40,59 +40,7 @@ Below is an image of the infected part of the Husky Corp network that the client
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250124131600.png" />
 </div>
-# Key Log Sources in Azure
-**Sign-In Logs**
-	- **Interactive Sign-ins**: Logs direct user login events.
-	- **Non-Interactive Sign-ins**: Tracks background authentication events (e.g., token refreshes).
-	- **Service Principal Sign-ins**: Captures sign-ins performed by applications or service principals.
-	- **Managed Identity Sign-ins**: Logs authentication activity for managed identities.
-**When to use in IR**
-	- Investigating brute force attacks or anomalous login attemptss
-	- Identifying compromised accounts through unusual sign-in patterns (e.g., sign-ins from unfamiliar IPs or locations).
-	- Validating Conditional Access policies and MFA enforcement.
-**Audit Logs**
-	- Changes to users, groups, roles, policies, and applications.
-	- Administrative actions like adding/removing federated domains or modifying permissions.
-	- Resource-level changes such as creating or deleting subscriptions.
-**When to use in IR**
-	- Tracking administrative actions during privilege escalation attacks (e.g., adding malicious federated domains).
-	- Monitoring changes to sensitive configurations (e.g., disabling MFA or modifying RBAC roles).
-	- Investigating unauthorized modifications to tenant settings.
- **Resource Logs**
-	- Data plane events related to resource usage, such as:
-		- Blob access (`GetBlob`) in storage accounts.
-	    - Key retrieval from Azure Key Vaults.
-**When to Use in IR**
-	- Detecting data exfiltration attempts (e.g., downloading sensitive files from storage accounts).
-	- Monitoring access to Azure Key Vault secrets and identifying unauthorized retrievals.
-	- Investigating anomalous network traffic patterns indicating lateral movement.
-**Activity Logs**
-	- Control-plane events on Azure Resource Manager resources:
-	    - Resource creation, deletion, or modification.
-	    - Subscription-level operations (e.g., stopping VMs or deleting resources).
-**When to Use in IR**
-	- Investigating sabotage incidents like mass resource deletions or crypto-mining VM creation.
-	- Validating policies applied at the subscription level during compliance audits.
-	- Identifying actions performed by compromised accounts within the subscription.
-**Diagnostic Logs**
-	- Diagnostic logs provide highly detailed telemetry from Azure resources.
-	- Verbose resource operations for actions like `ListKeys`, `GetBlob`, and `EnumerateContainers` for storage accounts.
-	- IP addresses, authentication methods (e.g., shared keys or SAS tokens), and timestamps.
-	- Information about accessed resources, such as file names, container names, and blob properties.
-**When to Use in IR**
-	- To investigate data exfiltration attempts (e.g., accessing sensitive blobs in storage accounts).
-	- To identify anomalous operations like listing storage account keys or downloading secrets.
-	- To correlate IP addresses with suspicious activity tied to compromised credentials.
-**Unified Audit Logs (UAL)**
-	- UAL is a centralized log source for Microsoft 365 activity (i.e. SharePoint, OneDrive, etc.)
-	- Logs when users consent to OAuth applications, including details like the `client_id`, permissions granted (`scope`), and user performing the action.
-	- eDiscovery activity searches initiated by users with administrative privileges.
-	- Etc.
-**When to Use in IR**:
-	- Investigating logs M365 related.
-	- To investigate OAuth abuse by identifying consent events for malicious applications.
-	- To analyze eDiscovery searches for sensitive data exfiltration.
-	- Etc.
+
 # Phase 1: MFA Enumeration and Password Spraying
 The investigation begins with analyzing potential MFA enumeration and password spraying attempts, prompted by the client’s report of "Risky User" alerts tied to sign-in activity. These alerts often indicate suspicious authentication behaviors, such as repeated failed logins or unusual access patterns, which align with tactics like password spraying. Given this context, Entra ID’s `SignInLogs` becomes a critical resource for identifying anomalous sign-in activity. Specifically, patterns such as a high volume of login attempts from a single user or IP address can serve as strong indicators of malicious behavior.
 
@@ -524,6 +472,10 @@ Husky Corp suspects that their Azure resources, including a Linux-based Azure Vi
 It was also identified that the `HuskyVm` has a managed identity attached to it. This expands the scope as not only is the VM now compromised, but any resource the managed identity has access to as well. Managed identities in Azure allow resources like VMs to securely access other Azure services without requiring credentials. They are tied to the Microsoft Entra tenant hosting the subscription and can be either:
 - **System-assigned**: Automatically created for a resource and deleted when the resource is deleted (one-to-one relationship)
 - **User-assigned**: Created manually and can be shared across multiple resources (many-to-many relationship)
+
+&nbsp;
+
+
 In this case, `HuskyVM` has a system-assigned managed identity attached to it, expanding the scope of compromise. If an attacker gains access to the VM, they can use its managed identity to interact with other Azure resources. Searching Azure AD sign-in logs for service principal activity related to `HuskyVM`'s managed identity revealed that the managed identity accessed three critical resources:
 1. **Azure Key Vault**
 2. **Microsoft Graph API**
@@ -630,6 +582,9 @@ Essentially the methodology behind identifying storage account access would be t
 1. Hunt for anomalous access to storage keys
 2. Hunt for enumeration (i.e. finding storage account name, then finding container name, then listing files in the storage account)
 3. Hunt for blob access (i.e. `GetBlob`)
+
+&nbsp;
+
 If the hierarchy of storage accounts does not make sense, here's a good representation of how it works:
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250213003355.png" />
