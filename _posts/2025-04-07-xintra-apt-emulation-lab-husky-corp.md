@@ -126,6 +126,8 @@ Once evidence pointed to potentially compromised accounts, the next step was to 
 - Departments
 - Job titles
 - UserPrincipalNames (UPNs)
+&nbsp;
+
 **Example GET Request:**
 `GET https://graph.microsoft.com/v1.0/users HTTP/1.1 Authorization: Bearer {access_token}`
 **Response:**
