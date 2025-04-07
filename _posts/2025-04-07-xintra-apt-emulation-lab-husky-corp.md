@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xintra APT Emulation Lab - Husky Corp
-modified: 20250-04-07
+modified: 2025-04-07
 categories: [Blue Team]
 ---
 
