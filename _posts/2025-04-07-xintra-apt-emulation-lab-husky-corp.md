@@ -207,7 +207,7 @@ The failure log for `Lonnard@huskycorp.net` displayed an interesting result desc
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250203223507.png" />
 </div>
-According to [Microsoft documentation](https://learn.microsoft.com/en-us/troubleshoot/entra/entra-id/app-integration/troubleshoot-consent-issues), "In certain scenarios, you're required to perform admin consent even though you might allow users to consent and the permission normally doesn't require an admin to consent.  Therefore, in this case, this exception occurred as admin consent is required for risky applications, even if users are normally allowed to consent. This indicates that the permissions requested by the application were high-risk and required admin approval.
+According to [Microsoft documentation](https://learn.microsoft.com/en-us/troubleshoot/entra/entra-id/app-integration/troubleshoot-consent-issues), "In certain scenarios, you're required to perform admin consent even though you might allow users to consent and the permission normally doesn't require an admin to consent."  Therefore, in this case, this exception occurred as admin consent is required for risky applications, even if users are normally allowed to consent. This indicates that the permissions requested by the application were high-risk and required admin approval.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250128171740.png" />
 </div>
