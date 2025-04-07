@@ -12,6 +12,21 @@ img {
 }
 </style>
 
+# Xintra APT Emulation Lab - Husky Corp
+
+by bri5ee
+
+&nbsp;
+
+<div style="position: absolute;">
+  
+</div>
+
+* TOC
+{:toc}
+
+<div id="toc-skipped"></div>
+
 # Context
 XINTRA have been engaged by Husky Corp to provide incident response and remediation on Husky Corp’s cloud environment. Husky Corp is a hospitality management chain specializing in managing several high-end restaurants around the Los Angeles area.
 
