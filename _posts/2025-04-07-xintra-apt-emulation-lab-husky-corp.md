@@ -1,17 +1,3 @@
----
-layout: post
-title: Xintra APT Lab - Husky Corp
-modified: 2025-04-07
-categories: [Blue Team]
----
-
-<style>
-img {
-  width: 90%;
-  height: 70%;
-}
-</style>
-
 # Context
 XINTRA have been engaged by Husky Corp to provide incident response and remediation on Husky Corp’s cloud environment. Husky Corp is a hospitality management chain specializing in managing several high-end restaurants around the Los Angeles area.
 
@@ -26,7 +12,7 @@ Below is an image of the infected part of the Husky Corp network that the client
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250124131600.png" />
 </div>
 # Key Log Sources in Azure
-- **Sign-In Logs**
+**Sign-In Logs**
 	- **Interactive Sign-ins**: Logs direct user login events.
 	- **Non-Interactive Sign-ins**: Tracks background authentication events (e.g., token refreshes).
 	- **Service Principal Sign-ins**: Captures sign-ins performed by applications or service principals.
@@ -325,7 +311,8 @@ Clicking on this link triggered the download of a file, which contained maliciou
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250210223547.png" />
 </div>
-Essentially what this snippet of code is doing is having JavaScript dynamically generate and trigger the download of a ZIP file that is being stored as a Base64 encoded string. It decodes the Base64 data into a binary format, wraps it in a Blob object, and creates an invisible element `<a>` with a temporary URL pointing to the file. The script then programmatically clicks the link to initiate the download of the file named `madapolam.zip`before cleaning up the temporary URL. After unzipping `madapolam.zip`, a single `.iso` file named `NewDocument1.iso` is visible.<div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+Essentially what this snippet of code is doing is having JavaScript dynamically generate and trigger the download of a ZIP file that is being stored as a Base64 encoded string. It decodes the Base64 data into a binary format, wraps it in a Blob object, and creates an invisible element `<a>` with a temporary URL pointing to the file. The script then programmatically clicks the link to initiate the download of the file named `madapolam.zip`before cleaning up the temporary URL. After unzipping `madapolam.zip`, a single `.iso` file named `NewDocument1.iso` is visible.
+<div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250210223958.png" />
 </div>
 We can mount the `.iso` as well to see what is stored in there. There are two files present: `libcryptx32.dll` and `NewDocument1.docx` as a shortcut.
@@ -348,7 +335,9 @@ This confirms that someone manually opened and executed the shortcut file throug
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250210225944.png" />
 </div>
-Just six seconds after execution (`2024-04-20 23:16:07 UTC`), network connections were observed originating from `rundll32.exe`. These connections used port 80, which is highly unusual for this process. <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+Just six seconds after execution (`2024-04-20 23:16:07 UTC`), network connections were observed originating from `rundll32.exe`. These connections used port 80, which is highly unusual for this process. 
+
+<div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250210230609.png" />
 </div>
 Searching for network events (`event.code : "3"`) tied to `rundll32.exe` uncovered over 5,000 connections to a single IP address, indicating potential beaconing activity. 
@@ -583,6 +572,7 @@ However, this convenience introduces risks. The PTA agent’s role as a bridge b
     - **Implement a skeleton key** that accepts arbitrary passwords for specific accounts, effectively bypassing authentication.
     - **Modify authentication logic** to grant access even when credentials are invalid.
 For example, the open-source tool `PTASpy` replaces `LogonUserW` with a malicious function that writes credentials to disk while still returning a successful validation signal to Azure AD. This is done by injecting a DLL using an in-line trampoline hook to fetch credentials like the following from [xpnsec's blog](https://blog.xpnsec.com/azuread-connect-for-redteam/):
+
 ```c
 #include <windows.h>
 #include <stdio.h>
