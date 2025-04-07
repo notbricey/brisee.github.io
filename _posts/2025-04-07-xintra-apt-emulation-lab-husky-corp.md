@@ -17,49 +17,49 @@ Below is an image of the infected part of the Husky Corp network that the client
 	- **Non-Interactive Sign-ins**: Tracks background authentication events (e.g., token refreshes).
 	- **Service Principal Sign-ins**: Captures sign-ins performed by applications or service principals.
 	- **Managed Identity Sign-ins**: Logs authentication activity for managed identities.
-- **When to use in IR**
+**When to use in IR**
 	- Investigating brute force attacks or anomalous login attemptss
 	- Identifying compromised accounts through unusual sign-in patterns (e.g., sign-ins from unfamiliar IPs or locations).
 	- Validating Conditional Access policies and MFA enforcement.
-- **Audit Logs**
+**Audit Logs**
 	- Changes to users, groups, roles, policies, and applications.
 	- Administrative actions like adding/removing federated domains or modifying permissions.
 	- Resource-level changes such as creating or deleting subscriptions.
-- **When to use in IR**
+**When to use in IR**
 	- Tracking administrative actions during privilege escalation attacks (e.g., adding malicious federated domains).
 	- Monitoring changes to sensitive configurations (e.g., disabling MFA or modifying RBAC roles).
 	- Investigating unauthorized modifications to tenant settings.
- - **Resource Logs**
+ **Resource Logs**
 	- Data plane events related to resource usage, such as:
 		- Blob access (`GetBlob`) in storage accounts.
 	    - Key retrieval from Azure Key Vaults.
-- **When to Use in IR**
+**When to Use in IR**
 	- Detecting data exfiltration attempts (e.g., downloading sensitive files from storage accounts).
 	- Monitoring access to Azure Key Vault secrets and identifying unauthorized retrievals.
 	- Investigating anomalous network traffic patterns indicating lateral movement.
-- **Activity Logs**
+**Activity Logs**
 	- Control-plane events on Azure Resource Manager resources:
 	    - Resource creation, deletion, or modification.
 	    - Subscription-level operations (e.g., stopping VMs or deleting resources).
-- **When to Use in IR**
+**When to Use in IR**
 	- Investigating sabotage incidents like mass resource deletions or crypto-mining VM creation.
 	- Validating policies applied at the subscription level during compliance audits.
 	- Identifying actions performed by compromised accounts within the subscription.
-- **Diagnostic Logs**
+**Diagnostic Logs**
 	- Diagnostic logs provide highly detailed telemetry from Azure resources.
 	- Verbose resource operations for actions like `ListKeys`, `GetBlob`, and `EnumerateContainers` for storage accounts.
 	- IP addresses, authentication methods (e.g., shared keys or SAS tokens), and timestamps.
 	- Information about accessed resources, such as file names, container names, and blob properties.
-- **When to Use in IR**
+**When to Use in IR**
 	- To investigate data exfiltration attempts (e.g., accessing sensitive blobs in storage accounts).
 	- To identify anomalous operations like listing storage account keys or downloading secrets.
 	- To correlate IP addresses with suspicious activity tied to compromised credentials.
-- **Unified Audit Logs (UAL)**
+**Unified Audit Logs (UAL)**
 	- UAL is a centralized log source for Microsoft 365 activity (i.e. SharePoint, OneDrive, etc.)
 	- Logs when users consent to OAuth applications, including details like the `client_id`, permissions granted (`scope`), and user performing the action.
 	- eDiscovery activity searches initiated by users with administrative privileges.
 	- Etc.
-- **When to Use in IR**:
+**When to Use in IR**:
 	- Investigating logs M365 related.
 	- To investigate OAuth abuse by identifying consent events for malicious applications.
 	- To analyze eDiscovery searches for sensitive data exfiltration.
