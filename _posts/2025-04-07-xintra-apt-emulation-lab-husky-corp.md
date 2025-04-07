@@ -594,6 +594,9 @@ An attacker with any of these roles can register a malicious domain to the tenan
 Logs related to adding federated domains can be found in Azure Audit Logs under the `DirectoryManagement` category. Specific activities are:
 - `Add Unverified Domain`
 - `Verify Domain`
+
+&nbsp;
+
 A search of Azure Audit Logs revealed four events in the `DirectoryManagement` category, including an `Add Unverified Domain` event. 
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250212230228.png" />
