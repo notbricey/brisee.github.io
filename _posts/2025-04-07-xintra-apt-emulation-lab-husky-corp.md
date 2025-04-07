@@ -273,14 +273,14 @@ The provided URL within the email is an OAuth 2.0 authorization request that dir
 	- Here, `https[:]//167[.]71[.]164[.]59/getAToken` points to an IP address controlled by the attacker, allowing them to intercept authorization codes or tokens. With the path being `getAToken`, this is also attributable to [PynAuth](https://github.com/Synzack/PynAuth), a python-based tool used for performing OAuth token stealing.
 5. `scope=Files.ReadWrite.All+Mail.Read...offline_access+openid+profile`
 	- Specifies the permissions (scopes) being requested by the application.
-	- Each scope represents a specific type of access to resources via Microsoft Graph API:
-		- `Files.ReadWrite.All`: Full read/write access to all files in OneDrive or SharePoint.
+	Each scope represents a specific type of access to resources via Microsoft Graph API:
+	- `Files.ReadWrite.All`: Full read/write access to all files in OneDrive or SharePoint.
 		- `Mail.Read`, `Mail.Send`: Read and send emails on behalf of the user.
 		- `Sites.Read.All`: Read all SharePoint sites.
 		- `User.Read`: Access basic user profile information.
 		- `offline_access`: Allows long-term access via refresh tokens.
 		- `openid`, `profile`: Grants access to OpenID Connect claims (e.g., user profile data).
-	- These permissions indicate that the attacker seeks extensive control over email, files, and user data which will play a key part in scoping out where to look for malicious / anomalous activity.
+	These permissions indicate that the attacker seeks extensive control over email, files, and user data which will play a key part in scoping out where to look for malicious / anomalous activity.
 
 Searching for `OperationName : "Add service principal" and TargetResource.displayName : "Calendar-Sync"` will show one event of the service principal being added:
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
