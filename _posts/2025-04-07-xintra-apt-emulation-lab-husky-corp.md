@@ -166,6 +166,9 @@ AzureHound is a specialized data collection tool within the BloodHound framework
 </div>
 Looking for that `UserId` within Azure Sign-in logs shows that the user is `lonnard@huskycorp.net`, the user who was also found being password sprayed against.
 
+&nbsp;
+
+
 Furthermore, a possible insider was found performing anomalous / malicious activity. Identifying a user attempting to read user mailbox settings via Graph API can be coined off as anomalous and can be identified in `microsoftgraphapilogs`. 
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250128165616.png" />
@@ -178,7 +181,13 @@ Searching Azure Sign-in Logs for that `UserId` shows one `UPN`: `lina@huskycorpo
 # Phase 3: OAuth Abuse and BEC Analysis
 As Husky Corp has identified users potentially compromised, it is critical to explore initial indicators of compromise beyond brute force attempts. One common attack vector involves phishing campaigns that trick users into consenting to malicious OAuth applications. OAuth (Open Authorization) is an open standard for access delegation that allows applications to access user resources on their behalf without requiring the user’s credentials. While this standard enables secure integration between applications and services, it also presents a significant risk when abused by adversaries.
 
+&nbsp;
+
+
 In the context of Azure AD, OAuth 2.0 is used by registered applications for authentication and authorization. These applications can be developed internally or externally and registered within Azure AD to allow users or systems to securely access resources. However, if an adversary creates a malicious application and convinces a user to consent to it, they can gain unauthorized access to sensitive data such as emails, files in SharePoint, or even perform administrative operations depending on the permissions granted.
+
+&nbsp;
+
 
 When a user consents to an application, they delegate specific permissions to that application, allowing it to act on their behalf. Adversaries exploit this mechanism by phishing users into consenting to malicious applications. Once consent is granted, the attacker can use the permissions to perform unauthorized actions without requiring the user's credentials.
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
@@ -195,9 +204,15 @@ The exploitation of OAuth 2.0 in Azure AD follows an attack chain that allows ad
 4. Redirect URI Configuration: Attackers set up redirect URIs pointing to their controlled infrastructure where authorization codes will be sent.
 5. Application Disguise: The malicious application is often named to appear legitimate, such as “Microsoft OAuth Application,” “Microsoft.Defender,” or similar trusted names to increase the likelihood of victim consent.
 
+&nbsp;
+
+
 With the application configured, attackers launch targeted phishing campaigns:
 1. Crafting Phishing Emails: Emails contain links to the legitimate Microsoft authentication service but with parameters that direct users to the attacker’s application consent flow.
 2. User Redirection: When victims click the link, they are directed to an authentic Microsoft login page, increasing the attack’s credibility and reducing suspicion.
+
+&nbsp;
+
 
 The core of the attack involves intercepting authorization codes:
 1. User Authentication: The victim authenticates with Microsoft credentials, potentially including MFA if required.
@@ -411,6 +426,9 @@ A key thing threat actors are looking for is if `AzureAdPrt` is set to `YES` and
 5. **Microsoft Entra CloudAP plugin**: Built on the CloudAP framework to verify user credentials with Microsoft Entra ID during Windows sign-in.
 6. **Microsoft Entra WAM plugin**: Enables SSO to applications that rely on Microsoft Entra ID for authentication.
 
+&nbsp;
+
+
 PRTs also have several critical security mechanisms during the authentication flow:
 1. **Nonces**: A "number used once" that serves as a unique, randomly generated value for each authentication transaction. During authentication, Windows sends a POST request to Azure AD's token endpoint with `grant_type=srv_challenge` to obtain a fresh nonce, which is then incorporated into subsequent authentication requests. This prevents replay attacks by ensuring each request is unique and time-bound.
 2. **Realms**: Authentication boundaries that determine which identity authority should handle requests. During authentication, the system performs realm discovery to determine whether the user belongs to a managed Azure AD tenant or a federated environment, routing requests appropriately.
@@ -442,6 +460,9 @@ Microsoft documentation provides in-depth authentication flows for PRTs for use 
 	- Verifies the device is still in good standing (not disabled or non-compliant)
 	- Confirms the user account is still active
 	- Verifies the PRT hasn't expired
+
+   &nbsp;
+
 Azure based offensive security tools, such as ROADtoken and similar tools understand this authentication flow and exploit it by intercepting and mimicking the legitimate PRT request process:
 1. **Nonce Acquisition**: ROADtoken first requests a valid nonce from Azure AD by contacting the token endpoint. The tenant id can be used with `roadrecon auth --prt-init` to request a nonce from Azure AD. This is a necessary first step since Microsoft enforces that a PRT Cookie must include a nonce
 2. **PRT Cookie Generation**: The tool uses this nonce to trigger Windows' built-in SSO mechanisms to generate a valid PRT cookie. It does this by either:
@@ -461,6 +482,9 @@ Azure based offensive security tools, such as ROADtoken and similar tools unders
 		 - HTTP only: checked/true
 		 - Domain: `login.microsoftonline.com`
 	- Refresh the page
+
+&nbsp;
+
 This will grant an attacker full access to whatever the user has access to in Azure/M365. Knowing how this process functions is crucial when performing IR when Pass the PRT attacks are detected. Knowing that `BrowserCore.exe` is commonly used only with browsers like `Chrome.exe`, `Edge.exe`, etc. if we see parent processes of `BrowerCore.exe` not being these, it might raise suspicion. Doing a search for `winlog.event_data.OriginalFileName : *BrowserCore.exe*`, I found an interesting event:
 <div style="text-align: center; display: flex; justify-content: center; align-items: center;">
   <img src="{{ site.github.url }}/images/blue-team/xintra-apt-lab-team/husky-corp/Pasted image 20250211234028.png" />
